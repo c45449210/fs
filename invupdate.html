@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+.in_body
+{
+	margin-top:0px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:0px;
+	background-color:transparent;
+}
+.div_c
+{
+	margin-left:50px;
+	margin-right:50px;
+	margin-top:50px;
+	margin-bottom:50px;
+}
+.b
+{
+	font-weight:bold;
+}
+.blue
+{
+	color:#f18a15;
+}
+.s16
+{
+	font-size:16px;
+}
+.sp_120
+{
+	width:10px;
+	height:120px;	
+}
+.lab_4
+{
+	margin-left:70px;
+	margin-right:50px;
+	color:#666666;
+	font-size:14px;
+}
+.sp_15
+{
+	width:10px;
+	height:15px;	
+}
+.sp_5
+{
+	height:5px;
+	width:500px;
+}
+.sp_50
+{
+	width:10px;
+	height:50px;	
+}
+.btn
+{
+	width:80px;
+	height:30px;
+	background-color:#f18a15;
+	border-style:none;
+	font-weight:bold;
+	border-radius:3px 3px 3px 3px;
+	font-size:14px;
+	color:white;
+	cursor:pointer;
+}
+.r20
+{
+	margin-right:20px;
+}
+</style>
+<script type="text/javascript">
+
+function fileText(id,value)
+{
+    if(document.getElementById(id))
+    {
+        document.getElementById(id).innerHTML=value;
+    }
+}
+function fileValue(id,num)
+{
+    if(document.getElementById(id))
+    {
+        document.getElementById(id).value=window.parent.reBtn(num);
+    }
+}
+function changeFont()
+{
+    reCon("main_div").style.fontFamily=window.parent.reFont();
+}
+function reCon(id)
+{
+    return document.getElementById(id);
+}
+var height = 0;
+function child_getH()
+{
+    var nh = document.body.offsetHeight+100;
+    if(nh < 500 || nh == null)
+    {
+	    nh = 500;
+    }
+	if(height != nh)
+	{
+	    height = nh;
+	    window.parent.child_height(height);
+	}
+}
+function ready()
+{
+    try
+    {
+        window.parent.show_ifr();
+    }
+    catch(e)
+    {
+    
+    }
+    child_getH();
+}
+</script>
+
+<script type="text/javascript">
+var upstatus = "";
+
+function initPageText()
+{
+    var list = window.parent.reList("update");
+    for(var i=1;i<=2;i++)
+    {
+        fileText("tit"+i,list["t"+i]);
+    }
+    for(var i=1;i<=3;i++)
+    {
+        fileText("tx"+i,list[i]);
+    }
+    fileValue("btn1","9");
+    fileValue("btn2","9");
+    changeFont();
+    child_getH();
+}
+function yzsw_upload_apply()
+{
+	var f=document.form_nbq_upload;
+	if(f.files.value=="")
+    {
+		window.parent.alertTip("18");
+		return ;
+	}
+	if(confirm(window.parent.reTip("19")))
+	{
+		f.submit();
+	}
+	window.parent.hide("help_7");
+	window.parent.show("help_res");
+}
+function init_ver()
+{
+	if(upstatus!=null && upstatus=="1")
+    {
+        window.parent.child_page.location.href="update_process.html";
+    }
+}
+</script>
+</head>
+<body class="in_body" onload="init_ver()">
+    <div class="div_c" id="main_div">
+        <form name= "form_nbq_upload" method="get" action="update_process.html" enctype="multipart/form-data">
+		<INPUT type=hidden name=CMD value=NBQ_UPLOAD>
+        <div style="height:400px">
+            <font class=" blue s16 b" id="tit2"></font>
+            <div class="sp_120"></div>
+            <div class="lab_4"><font id="tx3"></font><br /><div class="sp_5"></div><input name="files" size="40" maxlength="256" type="file" value=""></div>
+            <div class="sp_15"></div>
+            <div class="lab_4"><input name="inv_btn" onclick="yzsw_upload_apply()" type="button" class="btn r20" id="btn2"/></div>
+        </div>
+		</form>
+    </div>
+	<script type="text/javascript">
+	    initPageText();
+		ready();
+	</script>
+</body>
+</html>

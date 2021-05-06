@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<style type="text/css">
+		.in_body {
+			margin-top: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+			background-color: transparent;
+		}
+
+		.div_c {
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+		.cu {
+			cursor: pointer;
+		}
+
+		.b {
+			font-weight: bold;
+		}
+
+		.lab_5 {
+			font-size: 16px;
+			color: #666666;
+			margin-left: -20px;
+		}
+
+		.lab_l2 {
+			float: left;
+			width: 32%;
+			color: #666666;
+			margin-bottom: -2px;
+			font-size: 14px;
+			text-align: right;
+		}
+
+		.lab_r2 {
+			float: left;
+			width: 65%;
+			color: #666666;
+			text-align: right;
+			font-size: 14px;
+			text-align: left;
+			margin-left: 3%;
+		}
+
+		.cl {
+			clear: left;
+			height: 10px;
+			margin: 10px 0;
+		}
+		#up_1_div .cl,#up_2_div .cl,#up_3_div .cl{
+			line-height: 0;
+		} 
+		.line {
+			height: 1px;
+			background-color: #666666;
+			width: 100%;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+
+		.sp_5 {
+			height: 15px;
+			width: 500px;
+		}
+
+		.sp_20 {
+			height: 20px;
+			width: 500px;
+		}
+
+		.label {
+			float: left;
+			width: 32%;
+			color: #666666;
+			margin-bottom: -2px;
+			font-size: 14px;
+			text-align: right;
+		}
+
+		.lab_r {
+			float: left;
+			width: 50%;
+			color: #666666;
+			text-align: right;
+			font-size: 14px;
+			text-align: left;
+			margin-left: 3%
+		}
+
+		.lab_l {
+			float: left;
+			/* width: 40%; */
+			width: 32%;
+			color: #666666;
+			margin-bottom: -2px;
+			/* margin-left: 10%; */
+			font-size: 14px;
+			text-align: right;
+		}
+
+		.line_l {
+			height: 1px;
+			background-color: #666666;
+			width: 450px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			margin-left: 50px;
+		}
+
+		.sub {
+			display: inline-block;
+			width: 16px;
+			text-align: center;
+		}
+		#up_1_div div,#up_2_div div,#up_3_div div{
+			line-height: 37px;
+		}
+	</style>
+	<script type="text/javascript">
+		var height = 0;
+
+		function fileText(id, value) {
+			if (document.getElementById(id)) {
+				document.getElementById(id).innerHTML = value
+			}
+		}
+
+		function changeFont() {
+			reCon("main_div").style.fontFamily = window.parent.reFont()
+		}
+
+		function child_getH() {
+			var nh = document.body.offsetHeight + 100;
+			if (nh < 500 || nh == null) {
+				nh = 500
+			}
+			if (height != nh) {
+				height = nh;
+				window.parent.child_height(height)
+			}
+		}
+
+		function reCon(id) {
+			return document.getElementById(id)
+		}
+
+		function ready() {
+			try {
+				window.parent.show_ifr()
+			} catch (e) {}
+			child_getH()
+		}
+
+		function show(v) {
+			var c = document.getElementById(v);
+			if (c != null) {
+				c.style.display = ""
+			}
+		}
+
+		function hide(v) {
+			var c = document.getElementById(v);
+			if (c != null) {
+				c.style.display = "none"
+			}
+		};
+	</script>
+	<script type="text/javascript">
+		var webdata_sn = "";
+		var webdata_msvn = "";
+		var webdata_pv_type = "";
+		var webdata_rate_p = "";
+		var webdata_now_p = "";
+		var webdata_today_e = "";
+		var webdata_total_e = "";
+		var webdata_alarm = "";
+		var webdata_utime = "";
+
+		var cover_mid = "";
+		var cover_ver = "";
+		var cover_wmode = "";   
+		var cover_ap_ssid = "";
+		var cover_ap_ip = "";
+		var cover_ap_mac = "";
+		var cover_sta_ssid = "";
+		var cover_sta_rssi = "";
+		var cover_sta_ip = "";
+		var cover_sta_mac = "";
+		var status_a = "";
+		var status_b = "";
+	
+		// var status_c = "";
+		function b64EncodeUnicode(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, 
+        function(match, p1) {
+          return String.fromCharCode('0x' + p1);
+        }));
+    }
+		function ajax(){
+			// var str = localStorage.getItem('qwer')
+			// document.getElementById("cover_ap_ssid").style.display = 'black'	
+			// 			document.getElementById("cover_ap_ip").style.display = 'black'
+			// 			console.log(document.getElementById("cover_ap_ssid").style.display = 'none')
+			// 			console.log(document.getElementById("cover_ap_ip").style)
+			var inverter=new XMLHttpRequest()
+			inverter.open("get","inverter.cgi?t="+Math.random(),true)
+			// xhr.setRequestHeader("Authorization", str);
+			inverter.send()
+			inverter.onreadystatechange=function(){
+				if(inverter.readyState==4&&inverter.status==200){
+					//console.log(inverter.responseText)
+					var inverterArr = inverter.responseText.split(';')
+					//console.log(inverterArr)
+					document.getElementById("webdata_sn").innerHTML = inverterArr[0]
+					document.getElementById("webdata_msvn").innerHTML = inverterArr[1]
+					document.getElementById("webdata_pv_type").innerHTML = inverterArr[2]
+					document.getElementById("webdata_rate_p").innerHTML = inverterArr[3] +" ℃"
+					document.getElementById("webdata_now_p").innerHTML = inverterArr[4] +" W"
+					document.getElementById("webdata_today_e").innerHTML = inverterArr[5] + " kWh"
+					document.getElementById("webdata_total_e").innerHTML = inverterArr[6] + " kWh"
+					document.getElementById("webdata_alarm").innerHTML = inverterArr[7]
+					
+				}else{
+					console.log(inverter.status);
+				}
+			}
+			var collector=new XMLHttpRequest()
+			collector.open("get","moniter.cgi?t="+Math.random(),true)
+			// xhr.setRequestHeader("Authorization", str);
+			collector.send()
+			collector.onreadystatechange=function(){
+				if(collector.readyState==4&&collector.status==200){
+					console.log(collector.responseText)
+					collectorArr = collector.responseText.split(';')
+					console.log(collectorArr)	
+					document.getElementById("cover_mid").innerHTML = collectorArr[0]
+					document.getElementById("cover_ver").innerHTML = collectorArr[1]
+					document.getElementById("cover_ap_status").innerHTML = collectorArr[2]
+					document.getElementById("cover_ap_ssid").innerHTML = collectorArr[3] == "null" ? "---" : collectorArr[3]
+					document.getElementById("cover_ap_ip").innerHTML = collectorArr[4] == "null" ? "---" : collectorArr[4]
+					// document.getElementById("cover_ap_mac").innerHTML = collectorArr[5] == "null" ? "---" : collectorArr[5]
+					document.getElementById("cover_sta_status").innerHTML = collectorArr[6]
+					document.getElementById("cover_sta_ssid").innerHTML = collectorArr[7] == "null" ? "---" : collectorArr[7]
+					document.getElementById("cover_sta_rssi").innerHTML = collectorArr[8] == "null" ? "---" : collectorArr[8] + " %"
+					document.getElementById("cover_sta_ip").innerHTML = collectorArr[9] == "null" ? "---" : collectorArr[9]
+					document.getElementById("cover_sta_mac").innerHTML = collectorArr[10] == "null" ? "---" : collectorArr[10]
+					document.getElementById("cover_remote_status_a").innerHTML = collectorArr[11]
+					document.getElementById("cover_remote_status_b").innerHTML = collectorArr[12]
+					if(collectorArr[2] == 'Enable'){
+						localStorage.setItem('SSID',collectorArr[3])
+						localStorage.setItem('mode','AP')
+						// document.getElementById("cover_ap_ssid").style['display'] = 'block'	
+						// document.getElementById("cover_ap_ip").style['display'] = 'block'
+						document.getElementById("cover_sta_ssid").style['display'] = 'none'
+						document.getElementById("cover_sta_rssi").style['display'] = 'none'
+						document.getElementById("cover_sta_ip").style['display'] = 'none'
+						document.getElementById("cover_sta_mac").style['display'] = 'none'
+						document.getElementById("tx18").style['display'] = 'none'
+						document.getElementById("tx19").style['display'] = 'none'
+						document.getElementById("tx20").style['display'] = 'none'
+						document.getElementById("tx21").style['display'] = 'none'
+						document.getElementById("line3").style['display'] = 'none'
+						document.getElementById("line4").style['display'] = 'none'
+						document.getElementById("line5").style['display'] = 'none'
+						document.getElementById("line6").style['display'] = 'none'
+
+					}else if(collectorArr[6] == 'Enable'){
+						localStorage.setItem('SSID',collectorArr[7])
+						localStorage.setItem('mode','STA')
+						document.getElementById("cover_ap_ssid").style['display'] = 'none'	
+						document.getElementById("cover_ap_ip").style['display'] = 'none'
+						document.getElementById("ap_ssid").style['display'] = 'none'
+						document.getElementById("tx15").style['display'] = 'none'
+						document.getElementById("line").style['display'] = 'none'
+						document.getElementById("line2").style['display'] = 'none'
+						// document.getElementById("cover_sta_ssid").style['display'] = 'block'
+						// document.getElementById("cover_sta_rssi").style['display'] = 'block'
+						// document.getElementById("cover_sta_ip").style['display'] = 'block'
+						// document.getElementById("cover_sta_mac").style['display'] = 'block'
+					}else{
+						console.log('ssid未获取到')
+					}
+				}else{
+					console.log(collector.status);
+				}
+			}
+		}
+		
+		
+		
+		function initPageText() {
+			console.log(window.parent)
+			var list = window.parent.reList("status");
+			// console.log(list)
+			fileText("st1", list["t1"]);
+			fileText("st2", list["t2"]);
+			fileText("st3", list["t3"]);
+			fileText("st3", list["t3"]);
+			fileText("st3", list["t3"]);
+			for (var i = 1; i <= 27; i++) {
+				if (i != 14) {
+					fileText("tx" + i, list[i])
+				}
+			}
+			changeFont();
+			child_getH()
+		}
+
+		function upfold(v) {
+			if (document.getElementById("up_" + v + "_div").style.display == "none") {
+				show("up_" + v + "_div");
+				reCon("p_" + v).innerHTML = "-"
+			} else {
+				hide("up_" + v + "_div");
+				reCon("p_" + v).innerHTML = "+"
+			}
+		}
+
+		function init_main_page() {
+			
+		};
+		var n=0
+		setInterval(function(){
+			n++
+			document.getElementById("webdata_utime").innerHTML = n  + " s"
+		},1000)
+		
+		setInterval(function(){
+			n=0
+			document.getElementById("webdata_utime").innerHTML = 1 + " s"
+			ajax()
+		},1000*10)
+	</script>
+</head>
+
+<body class="in_body" onload="init_main_page();">
+	<div class="div_c" id="main_div">
+		<div class="lab_5 cu b" onclick="upfold(1);child_getH();"><span class="sub" id="p_1">-</span><span id="st1"
+				style="margin-left:3px"></span></div>
+		<div class="sp_5"></div>
+		<div id="up_1_div">
+			<div class="lab_l2" id="tx1"></div>
+			<div class="lab_r2" id="webdata_sn"></div>
+			<div class="cl"></div>
+			
+			<div class="lab_l2" id="tx2"></div>
+			<div class="lab_r2" id="webdata_msvn"></div>
+		
+			<div class="cl"></div>
+			<div class="lab_l2" id="tx4"></div>
+			<div class="lab_r2" id="webdata_pv_type"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" id="tx5"></div>
+			<div class="lab_r2" id="webdata_rate_p"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" style="color:#666666;" id="tx6"></div>
+			<div class="lab_r2" id="webdata_now_p" style="color:#666666;"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" style="color:#666666;" id="tx7"></div>
+			<div class="lab_r2" id="webdata_today_e" style="color:#666666;"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" style="color:#666666;" id="tx8"></div>
+			<div class="lab_r2" id="webdata_total_e" style="color:#666666;"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" style="color:#666666;" id="tx9"></div>
+			<div class="lab_r2" id="webdata_alarm" style="color:#666666;"></div>
+			<div class="cl"></div>
+			<div class="lab_l2" style="color:#666666;" id="tx10"></div>
+			<div class="lab_r2" id="webdata_utime" style="color:#666666;"></div>
+			<div class="cl"></div>
+		</div>
+		<div class="sp_20"></div>
+		<div class="lab_5 cu b" onclick="upfold(2);child_getH();"><span class="sub" id="p_2">+</span><span id="st2"
+				style="margin-left:3px"></span></div>
+		<div class="sp_5"></div>
+		<div id="up_2_div" style="display:none">
+			<div class="label" id="tx11"></div>
+			<div class="lab_r" id="cover_mid"></div>
+			<div class="cl"></div>
+			<div class="label" id="tx12"></div>
+			<div class="lab_r" id="cover_ver"></div>
+			<div class="cl"></div>
+			<div class="label" id="tx13"></div>
+			<div class="lab_r" id="cover_ap_status" style="color:#666666;font-weight:bold;"></div>
+			<div class="cl" id="line"></div>
+			<div class="lab_l" id="ap_ssid">SSID</div>
+			<div class="lab_r" id="cover_ap_ssid"></div>
+			<div class="cl" id="line2"></div>
+			<div class="lab_l" id="tx15"></div>
+			<div class="lab_r" id="cover_ap_ip"></div>
+			<div class="cl"></div>
+			<!-- <div class="lab_l" id="tx16"></div>
+			<div class="lab_r" id="cover_ap_mac"></div>
+			<div class="cl"></div> -->
+			<div class="label" id="tx17"></div>
+			<div class="lab_r" id="cover_sta_status" style="color:#666666;font-weight:bold;"></div>
+			<div class="cl" id="line3"></div>
+			<div class="lab_l" id="tx18"></div>
+			<div class="lab_r" id="cover_sta_ssid"></div>
+			<div class="cl" id="line4"></div>
+			<div class="lab_l" id="tx19"></div>
+			<div class="lab_r" id="cover_sta_rssi"></div>
+			<div class="cl" id="line5"></div>
+			<div class="lab_l" id="tx20"></div>
+			<div class="lab_r" id="cover_sta_ip"></div>
+			<div class="cl" id="line6"></div>
+			<div class="lab_l" id="tx21"></div>
+			<div class="lab_r" id="cover_sta_mac"></div>
+			<div class="cl"></div>
+		</div>
+
+		<div class="sp_20"></div>
+		<div class="lab_5 cu b" onclick="upfold(3);child_getH();"><span class="sub" id="p_3">+</span><span id="st3"
+				style="margin-left:3px"></span></div>
+		<div class="sp_5"></div>
+		<div id="up_3_div" style="display:none">
+			<div class="label" id="tx25"></div>
+			<div class="lab_r" id="cover_remote_status_a"></div>
+			<div class="cl"></div>
+			<div class="label" id="tx26"></div>
+			<div class="lab_r" id="cover_remote_status_b"></div>
+			<div class="cl"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	// document.getElementById("cover_ap_ssid").style.display = 'black'	
+	// 					document.getElementById("cover_ap_ip").style.display = 'black'
+	// 					console.log(document.getElementById("cover_ap_ssid"))
+	// 					console.log(document.getElementById("cover_ap_ip"))
+		ajax()
+		initPageText();
+		ready();
+	</script>
+</body>
+
+</html>

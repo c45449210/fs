@@ -1,0 +1,1466 @@
+﻿<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<style type="text/css">
+		.expand2{
+			width: 0;
+			height: 0;
+			border-width: 10px;
+			border-style: solid;
+			border-color: #000 transparent transparent transparent;
+			float:left;
+			float: left;
+			margin-left: 20px;
+			margin-top: 15px;
+		}
+		.expand{
+			width: 0;
+			height: 0;
+			border-width: 10px;
+			border-style: solid;
+			border-color: transparent transparent transparent #fff;
+			float:left;
+			float: left;
+			margin-left: 20px;
+			margin-top: 10px;
+		}
+		.lan {
+			cursor: pointer;
+			text-decoration: none;
+			color: #0163AC;
+			font-size: 12px;
+			margin-left: 3px;
+		}
+
+		.lan_r {
+			margin-right: 5px;
+		}
+
+		.lan_p {
+			margin-bottom: -2px;
+			margin-left: 3px;
+			height: 12px;
+		}
+
+		.cl {
+			clear: left;
+		}
+
+		.opt {
+			padding-top: 4px;
+			font-size: 18px;
+		}
+
+		.opt:hover {
+			text-decoration: underline;
+		}
+
+		.opt2 {
+			padding-top: 6px;
+			font-size: 14px;
+		}
+
+		.opt2:hover {
+			text-decoration: underline;
+		}
+
+		.opt_sel {
+			height: 30px;
+			background-color: #f18a15;
+			/* padding-left: 25px; */
+			color: White;
+			cursor: pointer;
+			padding: 20px 0 20px 25px
+		}
+
+		.opt_sel2 {
+			height: 30px;
+			background-color: #C9CACA;
+			padding-left: 25px;
+			color: #757475;
+			cursor: pointer;
+		}
+
+		.opt_no {
+			height: 30px;
+			/* padding-left: 25px; */
+			cursor: pointer;
+			color: #757475;
+			padding: 20px 0 20px 25px;
+		}
+
+		.opt_no2 {
+			height: 30px;
+			padding-left: 25px;
+			cursor: pointer;
+			color: #757475;
+		}
+
+		.shadow {
+			filter: progid:DXImageTransform.Microsoft.Shadow(color=#909090, direction=120, strength=4);
+			-moz-box-shadow: 2px 2px 10px #909090;
+			-webkit-box-shadow: 2px 2px 10px #909090;
+			box-shadow: 2px 2px 10px #909090;
+		}
+
+		.back_div {
+			float: left;
+			margin-top: 10px;
+			background-color: White;
+			height:500px;
+		}
+
+		.rad_l {
+			border-radius: 10px 0px 0px 10px;
+			border: solid 1px #666666;
+			border-right: none;
+		}
+
+		.rad_r {
+			border-radius: 0px 10px 10px 0px;
+			border: solid 1px #666666;
+		}
+
+		.rad_t {
+			border-radius: 10px 10px 0px 0px;
+		}
+
+		.rad_b {
+			border-radius: 0px 0px 10px 10px;
+			border: solid 1px #666666;
+			border-top: none;
+		}
+
+		.rad_a {
+			border-radius: 10px 10px 10px 10px;
+		}
+
+		.back_div2 {
+			margin-left: 15px;
+			width: 200px;
+			float: left;
+			margin-top: 10px;
+			background-color: White;
+			height: auto;
+		}
+
+		.bot_txt {
+			font-family: Arial;
+			font-size: 14px;
+			text-align: center;
+			color: #757475;
+		}
+
+		.sp_20 {
+			width: 10px;
+			height: 20px;
+		}
+
+		.sp_40 {
+			width: 10px;
+			height: 40px;
+		}
+
+		.lab_b {
+			background-color: #f18a15;
+			font-size: 18px;
+			height: 40px;
+			color: white;
+			text-align: center;
+		}
+
+		.lab_h {
+			margin-top: 15px;
+			color: #666666;
+			font-size: 14px;
+			line-height: 18px;
+		}
+	</style>
+	<script type="text/javascript">
+		function lan() {
+			return slanV
+		}
+		var help_cn = {
+			1: {
+				t: "采集器同时可以作为无线接入点(AP模式)方便用户对设备进行配置，也可以作为无线信息终端(STA模式)通过无线路由器连接远程服务器。<br/><br/><font style='font-weight:bold'>远程服务器状态说明</font><br/><font style='font-family:Arial'>◆</font>未连接：最近一次与服务器连接失败。<br/>如出现此类状况，请检查以下各项内容：<br/>（1）检查采集器信息中是否已获得IP地址；<br/>（2）检查路由器与外网连接是否正常；<br/>（3）检查路由器是否设置了防火墙；<br/><br/><font style='font-family:Arial'>◆</font>已连接：最近一次与服务器连接成功；<br/><br/><font style='font-family:Arial'>◆</font>未知：未与服务器发生连接。请等待5分钟后再检查。"
+			},
+			31: {
+				t: '在本页面，您可以点击[搜索]按钮自动搜索附近的无线接入点，并通过设置网络参数连接上它。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：如果您没有设置此类设备的经验，建议您通过设置向导进行设置。</font><br /><br /><font style="color:#666666;font-weight:bold;">★注意：保存后，系统会立即重启。重启后，您必须重新登录配置界面。</font>'
+			},
+			32: {
+				t: "如果您没有找到您想要的无线接入点，请重复刷新。"
+			},
+			4: {
+				t: "如果您的采集器支持有线网络，本页帮助您设置有线网络参数，当您选择有线方式后，系统将自动关闭无线方式中的STA模式，您可以通过选择开启/关闭无线功能来设置是否保留无线方式的AP模式。大多数系统支持DHCP自动获取IP，如果您的路由器不支持，请选择手动输入。<br /><br /><font style='color:#666666;font-weight:bold;'>★注意：保存后，系统会立即重启。重启后，您必须重新登录配置界面。</font>"
+			},
+			51: {
+				t: '采集器一般工作于"数据采集模式"，如果您的采集器支持"透传模式"，您可以选择透传模式，在此模式下，采集器与之相连的设备将直接和远程计算机进行通信。<br /><br /><font style=\'color:#666666;font-weight:bold;\'>★注意：更改设置后，必须重启采集器。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			52: {
+				t: '如果采集器支持，您可以同时向多个服务器以TCP/UDP的形式发送数据。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：更改设置后，必须重启采集器。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			53: {
+				t: "该页面用于配置采集器的串口通信和内置的Web Server的参数，请尽量不要更改默认设置。更改参数可能导致设备无法工作。<br /><br /><font style='color:#666666;font-weight:bold;'>★注意：更改设置后，必须重启采集器。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>"
+			},
+			54: {
+				t: '该页面用于配置采集器作为无线接入点模式(AP模式)的参数。建议修改AP加密方式以提升系统安全性。修改后请牢记密码。如果忘记密码，请通过恢复功能将采集器还原到出厂设置。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：更改设置后，必须重启采集器。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			6: {
+				t: '该页面设置用户用于登陆采集器内置Web Server的用户名和密码。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：更改设置后，必须重启采集器。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			71: {
+				t: '您可以通过将本地电脑上的固件更新文件上传的方式更新采集器固件。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：升级后，采集器将自动重启。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			72: {
+				t: '您可以通过将本地电脑上的固件更新文件上传的方式更新逆变器固件。<br /><br /><font style="color:#666666;font-weight:bold;">★注意：升级后，采集器将自动重启。重启后，您必须重新登录配置界面，建议完成所有配置后再重启。</font>'
+			},
+			8: {
+				t: "重启后，将启用新保存的配置参数。"
+			},
+			9: {
+				t: '<font style="color:#666666;font-weight:bold;">★注意：恢复出厂设置后将导致原保存的配置参数消失。</font>'
+			},
+			res: {
+				t: '<font style="color:#666666;font-weight:bold;">★注意：设备IP地址可能会发生改变，获取设备IP地址的方法，请参照完全使用手册。</font>'
+			}
+		};
+		var opt_cn = {
+			1: {
+				t: "系统信息"
+			},
+			3: {
+				t: "快速配置"
+			},
+			4: {
+				t: "有线设置"
+			},
+			5: {
+				t: "高级设置"
+			},
+			51: {
+				t: "工作模式"
+			},
+			52: {
+				t: "远程服务器设置"
+			},
+			53: {
+				t: "端口设置"
+			},
+			54: {
+				t: "无线接入点设置"
+			},
+			6: {
+				t: "账号管理"
+			},
+			7: {
+				t: "软件升级"
+			},
+			71: {
+				t: "通讯模块升级"
+			},
+			72: {
+				t: "逆变器升级"
+			},
+			8: {
+				t: "重启"
+			},
+			9: {
+        t: "恢复"
+      },
+			help: {
+				t: "帮助"
+			}
+		};
+		var btn_cn = {
+			1: {
+				t: "开始向导"
+			},
+			2: {
+				t: "刷新"
+			},
+			3: {
+				t: "下一步"
+			},
+			4: {
+				t: "上一步"
+			},
+			5: {
+				t: "完成"
+			},
+			6: {
+				t: "搜索"
+			},
+			7: {
+				t: "保存"
+			},
+			8: {
+				t: "确定"
+			},
+			9: {
+				t: "开始升级"
+			},
+			10: {
+				t: "重启"
+			},
+			11: {
+				t: "返回"
+			},
+			12: {
+				t: "确认"
+			},
+			13:{
+				t: "请求超时,请重新设置"
+			},
+			14:{
+				t: "正在恢复出厂设置,稍后请重新登陆"
+			},
+		};
+		var main_cn = {
+			status: {
+				t1: "逆变器信息",
+				t2: "采集器信息",
+				t3: "远程服务器信息",
+				1: "逆变器序列号",
+				2: "固件版本号",
+				4: "逆变器型号",
+				5: "逆变器温度",
+				6: "当前功率",
+				7: "当日发电量",
+				8: "总发电量",
+				9: "报警信息",
+				10: "最后更新时间",
+				11: "设备序列号",
+				12: "固件版本号",
+				13: "无线AP模式",
+				14: "SSID",
+				15: "IP地址",
+				16: "MAC地址",
+				17: "无线STA模式",
+				18: "路由器SSID",
+				19: "信号强度",
+				20: "IP地址",
+				21: "MAC地址",
+				22: "有线模式",
+				23: "IP地址",
+				24: "MAC地址",
+				25: "远程服务器A",
+				26: "远程服务器B",
+				27: "远程服务器C",
+				28: "开启",
+				29: "关闭",
+			},
+			wireless: {
+				1: "网络名称（SSID）<br />(注意：区分大小写)",
+				2: "即使此网络未广播，也进行连接",
+				3: "无线路由器MAC地址",
+				4: "例如：00:01:02:03:04:05",
+				5: "加密方式",
+				6: "加密类型",
+				7: "加密算法",
+				8: "密码 (注意：区分大小写)",
+				9: "(16进制：10或26位字符。ASCII码：5或13位字符。)",
+				10: "显示密码",
+				11: "密码（8-64 Bytes）<br />(注意：区分大小写)",
+				12: "显示密码",
+				13: "自动获得IP地址",
+				14: "IP地址",
+				15: "子网掩码",
+				16: "网关地址",
+				17: "DNS服务器地址",
+				18: "★注意：保存后，系统会立即重启。",
+				19: "请选择您当前使用的无线网络",
+				20: "★注意：当所选WiFi 信号（RSSI）低于15%时，有可能会出现连接不稳定的现象，请选择其他可用网络或者缩短路由器与设备之间的距离。",
+				21: "开启",
+				22: "关闭",
+				23: "路由列表",
+				24: "名称",
+				25: "强度(%)",
+				26: "信道",
+				27: "设置失败，请重新设置",
+			},
+			cable: {
+				1: "无线功能",
+				2: "自动获得IP地址",
+				3: "IP地址",
+				4: "子网掩码",
+				5: "网关地址",
+				6: "DNS服务器地址",
+				7: "★注意：保存后，系统会立即重启。"
+			},
+			select: {
+				t1: "工作模式",
+				1: "工作模式：",
+				2: "数据采集模式",
+				3: "透传模式"
+			},
+			remote: {
+				t1: "远程服务器设置",
+				t2: "远程服务器A设置",
+				1: "服务器",
+				2: "IP地址",
+				3: "域名",
+				4: "端口",
+				5: "连接方式",
+				6: "状态",
+				7: "测试",
+				8: "服务器A",
+				9: "服务器B",
+				10: "服务器C",
+				ot1: "默认"
+			},
+			port: {
+				t1: "串口参数设置",
+				t2: "内置Server网络参数设置",
+				1: "波特率",
+				2: "数据位",
+				3: "校验位",
+				4: "停止位",
+				5: "CTSRTS",
+				6: "协议",
+				7: "端口",
+				8: "服务器地址",
+				9: "最大TCP连接数(1~32)",
+				10: "TCP超时设置 (不超过600 秒)"
+			},
+			wirepoint: {
+				t1: "无线接入点参数设置",
+				t2: "安全设置",
+				t3: "局域网参数设置",
+				1: "网络模式",
+				2: "网络名称（SSID）",
+				3: "模块MAC地址",
+				4: "信道选择",
+				5: "自动选取",
+				6: "发送功率",
+				7: "高",
+				8: "中",
+				9: "低",
+				10: "加密模式",
+				11: "WEP加密",
+				12: "密码(5 or 13 ASCII)",
+				13: "密码(10 or 26 HEX)",
+				14: "WPA加密",
+				15: "加密算法",
+				16: "密码(8-63位字符)",
+				17: "IP地址(DHCP网关设置)",
+				18: "子网掩码",
+				19: "DHCP 服务器",
+				20: "停用",
+				21: "启用",
+				22: "域名",
+				23: "(1~30个字符，可使用字母和数字的组合，但必须包含字母)",
+				24: "原用户名",
+				// 25: "用户名（最多15个字符）",
+				25: "网络名称（SSID）",
+				26: "再次输入新用户名",
+				// 27: "新密码（最多15个字符）",
+				27: "密码（最多15个字符）",
+				28: "再次输入新密码",
+				29: "修改AP加密方式",
+				30: "无线接入点参数设置"
+
+			},
+			account: {
+				t1: "设置一个新的登录账号与密码",
+				1: "原用户名",
+				2: "新用户名",
+				3: "再次输入新用户名",
+				4: "新密码",
+				5: "再次输入新密码"
+			},
+			update: {
+				t1: "通讯模块软件升级",
+				t2: "逆变器软件升级",
+				1: "当前软件版本：",
+				2: "★注意：软件升级过程大概一分钟，在升级过程中请确保电脑始终与采集器保持连接，并且采集器不能断电，否则采集器将永久损坏。",
+				3: "当前软件版本："
+			},
+			restart: {
+				t1: "重启采集器",
+				1: "重要提示：<br /><br />重启后，您必须重新登录配置界面，建议完成所有配置后再重启。<br />重新启动会中断网络很短一段时间，确定吗？"
+			},
+			reset: {
+				t1: "恢复出厂设置",
+				1: "重要提示：<br /><br/>恢复出厂设置后，所有用户的配置都将删除，您可以通过http://10.10.100.254来重新配置，登录口令都是123456789。确定恢复出厂设置吗？"
+			},
+			commit: {
+				t1: "设置完成，采集器将尝试连接到网络。",
+				t2: "重启成功！",
+				t3: "出厂设置恢复成功！",
+				t4: "保存成功！",
+				t5: "无线功能开启",
+				1: "注:<br />&nbsp;&nbsp;&nbsp;&nbsp;采集器连接网络需要10s左右。如果采集器上的绿色LED变成常亮，就表示安装成功。<br / ><br / >&nbsp;&nbsp;&nbsp;&nbsp;如果绿色LED一直闪烁，AP仍然可用，请重新连接，重新设置。一定要输入正确的Wi-Fi密码<br / ><br / >&nbsp;&nbsp;&nbsp;&nbsp;更多的帮助和其他的故障的排除，请参阅安装手册或经销商支持网站。",
+				2: "如需重新进入配置界面，请确保您的电脑或手机与设备处于同一网段中，并输入设备IP地址进行访问。",
+				3: '您可以选择手动关闭该页或重新连接采集设备所属网络后再登录至<a onClick="window.parent.relogin()" style="cursor:pointer; text-decoration:underline;color:#666666;font-weight:bold;">配置界面</a>。',
+				4: "重启设备后配置才能生效。<br />重启之后，您需要重新登录配置界面进行其他配置，建议您在完成所有设置后再重启。<br />请点击[重启]按键立即重启；或点击[返回]按键继续配置。<br />您可以在完成所有设置后选择左边菜单栏中的重启功能进行重启。",
+				5: "无线功能已关闭，如需进行无线设置，必须先启用无线功能。启用无线功能系统会进行重启，系统重启会中断网络很短一段时间，确定现在启用无线功能吗？ ",
+				6: "设置成功!"
+			}
+		};
+		var tip_cn = {
+			1: "开启",
+			2: "关闭",
+			3: "已连接",
+			4: "未连接",
+			5: "秒前",
+			6: "没有选择无线WiFi！",
+			7: "密码为空！",
+			8: "密码不一致！",
+			9: "IP地址无效！",
+			10: "子网掩码无效！",
+			11: "网关地址无效！",
+			12: "DNS服务器地址无效！",
+			13: "请输入5或13个ASCII！",
+			14: "请输入10或26个Hex！",
+			15: "请输入8-63个字符！",
+			16: "请输入密码！",
+			17: "MAC地址无效！",
+			18: "请选择文件！",
+			19: "您确定要升级吗？",
+			20: "用户名为空！",
+			21: "用户名不一致！",
+			22: "端口不正确！",
+			23: "端口数值必须小于65535！",
+			24: "最大TCP连接数不正确！",
+			25: "最大TCP连接数必须小于等于32！",
+			26: "TCP超时设置不正确！",
+			27: "TCP超时设置必须小于等于600秒！",
+			28: "服务器地址无效！",
+			29: "请输入正确的端口号！",
+			30: "域名格式不正确！",
+			31: "连接WiFi网络失败，所选择的WiFi网络的加密方式或填写的密码不正确。",
+			32: "连接中",
+			33: "密码不得少于8个字符！",
+			34: "请手动选择WEP加密的认证方式。请查看您的路由器确认合适的认证方式，如选择错误可能导致设置失败。",
+			35: "请确认输入的密码符合：\n    16进制：输入10或26位 (0-9, a-f, A-F 范围内的) 字符。\n    ASCII码：输入5或13位 (0-9, a-z, A-Z 范围内的) 字符。",
+			36: "警告：该加密方式不能验证密码是否正确！",
+			37: "逆变器软件升级失败，请重试！",
+			38: "",
+			39: "逆变器软件升级成功，模块将自动重启，请关闭页面。",
+			40: "SSID不能为空！",
+			41: "未知",
+			42: "通讯中断，升级失败请先给逆变器断电再重新通电，然后重新启动升级流程！"
+		};
+		var servertip_cn = {
+			h1: "服务器A",
+			h2: "服务器B",
+			h3: "服务器C",
+			1: "请输入",
+			2: "的端口！",
+			3: "请输入",
+			4: "的IP地址或域名！",
+			5: "",
+			6: "的IP地址不正确！",
+			7: "",
+			8: "的端口不正确！",
+			9: "端口数值必须小于65535！"
+		};
+		var help_en = {
+			1: {
+				t: "The device can be used as a wireless access point (AP mode) to facilitate users to configure the device, or it can also be used as a wireless information terminal (STA mode) to connect the remote server via wireless router.<br/><br/><font style='font-weight:bold'>Status of remote server</font><br/>◆Not connected: Connection to server failed last time.<br/>If under such status, please check the issues as follows:<br/>(1) check the device information to see whether IP address is obtained or not;<br/>(2) check if the router is connected to internet or not;<br/>(3) check if a firewall is set on the router or not;<br/><br/>◆Connected: Connection to server successful last time;<br/><br/>◆Unknown: No connection to server.Please check again in 5 minutes."
+			},
+			31: {
+				t: 'In this page, you can click the "Search" button to automatically search for nearby wireless access point, and connect your device to it by setting the network parameters. <br /><br /><font style="color:#666666;font-weight:bold;">★Note: If you haven’t set this kind of device before, please follow the setup wizard.</font><br /><br /><font style="color:#666666;font-weight:bold;">★Note: After clicking Save, the system will restart immediately. <br /><br />You need to re-login the configuration interface after restart.</font>'
+			},
+			32: {
+				t: "Please refresh repeatedly if there is no desirable wireless access point available."
+			},
+			4: {
+				t: "This page will help you to configure cable network parameters if your device supports cable network. <br /><br />When you choose cable network connection, the STA mode of wireless connection will be turned off by system automatically. <br /><br />Whether to keep the AP mode of wireless connection or not can be set by turning on or off the wireless function. <br /><br />Most systems support the function of DHCP to obtain IP address automatically. Please add it manually if your router does not support such function.<br /><br /><font style='color:#666666;font-weight:bold;'>★Note: After clicking Save, the system will restart immediately. <br /><br />You need to re-login the configuration interface after restart.</font>"
+			},
+			51: {
+				t: "The device usually works under data collection mode. You can select transparency mode if your device supports such function. <br /><br />When under transparency mode, the device with the connected device will communicate with remote computer directly.<br /><br /><font style='color:#666666;font-weight:bold;'>★Note: After changing the settings, the device must be restarted.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>"
+			},
+			52: {
+				t: 'Your device can transfer data to several servers in the form of TCP/UDP if your device  supports this function.<br /><br /><font style="color:#666666;font-weight:bold;">★Note: After changing the settings, the device must be restarted.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>'
+			},
+			53: {
+				t: "In this page, you can configure the serial ports communication and internal web server parameters of device. <br /><br />Please do not change the default settings, or the parameters change will cause device malfunction.<br /><br /><font style='color:#666666;font-weight:bold;'>★Note: After changing the settings, the device must be restarted.</font>"
+			},
+			54: {
+				t: 'In this page, you can configure the parameters of the device when it works under the access point mode. <br /><br />It is recommended to change the encryption mode for AP to enhance the system security. Please remember your password. If password is forgotten, you need to Reset the device to default setting.<br /><br /><font style="color:#666666;font-weight:bold;">★Note: After changing the settings, the device must be restarted.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>'
+			},
+			6: {
+				t: 'In this page, you can set your user name and password for logging in the internal web server of device.<br /><br /><font style="color:#666666;font-weight:bold;">★Note: After changing the settings, the device must be restarted.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>'
+			},
+			71: {
+				t: 'The firmware of device can be updated by uploading the update files from your local computer. <br /><br /><font style="color:#666666;font-weight:bold;">★Note: After upgrade, the device will automatically restart.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>'
+			},
+			72: {
+				t: 'The firmware of inverter can be updated by uploading the update files from your local computer. <br /><br /><font style="color:#666666;font-weight:bold;">★Note: After upgrade, the device will automatically restart.<br/><br/>After restart, you will need to re-login the configuration interface. It is recommended to restart after completing all configurations.</font>'
+			},
+			8: {
+				t: "The new configuration parameters will be effective after restart."
+			},
+			9: {
+				t: '<font style="color:#666666;font-weight:bold;">★Note: After restoring factory settings, the current configuration parameters will be deleted.</font>'
+			},
+			res: {
+				t: '<font style="color:#666666;font-weight:bold;">★Note: The IP address of the device may have changed, please refer to User Manual to check the procedures to obtain the new IP address. </font>'
+			}
+		};
+		var opt_en = {
+			1: {
+				t: "Status"
+			},
+			// 2: {
+			// 	t: "Wizard"
+			// },
+			3: {
+				t: "Quick Set"
+			},
+			4: {
+				t: "Cable"
+			},
+			5: {
+				t: "Advanced"
+			},
+			51: {
+				t: "Working mode"
+			},
+			52: {
+				t: "Remote server"
+			},
+			53: {
+				t: "Port setting"
+			},
+			54: {
+				t: "Access point"
+			},
+			6: {
+				t: "Account"
+			},
+			7: {
+				t: "Upgrade"
+			},
+			71: {
+				t: "Upgrade firmware"
+			},
+			72: {
+				t: "Upgrade inverter"
+			},
+			8: {
+				t: "Restart"
+			},
+			9: {
+        t: "Reset"
+      },
+			help: {
+				t: "Help"
+			}
+		};
+		var btn_en = {
+			1: {
+				t: "Start"
+			},
+			2: {
+				t: "Refresh"
+			},
+			3: {
+				t: "Next"
+			},
+			4: {
+				t: "Back"
+			},
+			5: {
+				t: "OK"
+			},
+			6: {
+				t: "Search"
+			},
+			7: {
+				t: "Save"
+			},
+			8: {
+				t: "OK"
+			},
+			9: {
+				t: "Upload"
+			},
+			10: {
+				t: "Restart"
+			},
+			11: {
+				t: "Back"
+			},
+			12: {
+				t: "OK"
+			},
+			13: {
+				t: "Request timed out, please reset"
+			},
+			14:{
+				t: "Restoring factory settings, please log back in later"
+			},
+		};
+		var main_en = {
+			status: {
+				t1: "Inverter information",
+				t2: "Device information",
+				t3: "Remote server information",
+				1: "Inverter serial number",
+				2: "Firmware version",
+				4: "Inverter model",
+				5: "Inverter temprature",
+				6: "Current power",
+				7: "Yield today",
+				8: "Total yield",
+				9: "Alerts",
+				10: "Last updated",
+				11: "Device serial number",
+				12: "Firmware version",
+				13: "Wireless AP mode",
+				14: "SSID",
+				15: "IP address",
+				16: "MAC address",
+				17: "Wireless STA mode",
+				18: "Router SSID",
+				19: "Signal Quality",
+				20: "IP address",
+				21: "MAC address",
+				22: "Cable mode",
+				23: "IP address",
+				24: "MAC address",
+				25: "Remote server A",
+				26: "Remote server B",
+				27: "Remote server C",
+				28: "Enable",
+				29: "Disable",
+			},
+			wireless: {
+				1: "Network name (SSID)<br />(Note: case sensitive)",
+				2: "Connect the network even if it does not broadcast",
+				3: "Wireless router MAC address",
+				4: "E.g. 00:01:02:03:04:05",
+				5: "Encryption method",
+				6: "Encryption type",
+				7: "Encryption algorithm",
+				8: "Password (Note: case sensitive)",
+				9: "(HEX: 10 or 26 characters;ASCII: 5 or 13 characters)",
+				10: "Show passwords",
+				11: "Password (8-64 bytes)<br />(Note: case sensitive)",
+				12: "Show passwords",
+				13: "Obtain an IP address automatically",
+				14: "IP address",
+				15: "Subnet mask",
+				16: "Gateway address",
+				17: "DNS server address",
+				18: "★Note: After clicking Save, the system will restart immediately.",
+				19: "Please select your current wireless network",
+				20: "★Note: When RSSI of the selected WiFi network is lower than 15%, the connection may be unstable, please select other available network or shorten the distance between the device and router.",
+				21: "Enable",
+				22: "Disable",
+				23: "Site Survey",
+				24: "SSID",
+				25: "RSSI(%)",
+				26: "Channel",
+				27: "Setting failed, please reset",
+			},
+			cable: {
+				1: "Wireless function",
+				2: "Obtain an IP address automatically",
+				3: "IP address",
+				4: "Subnet mask",
+				5: "Gateway address",
+				6: "DNS server address",
+				7: "★Note: After clicking Save, the system will restart immediately."
+			},
+			select: {
+				t1: "Working mode",
+				1: "Working mode:",
+				2: "Data collection",
+				3: "Transparency"
+			},
+			remote: {
+				t1: "Remote server setting",
+				t2: "Server A Setting",
+				1: "Server",
+				2: "IP address",
+				3: "Domain name",
+				4: "Port",
+				5: "Connection",
+				6: "Status",
+				7: "Test",
+				8: "Server A",
+				9: "Server B",
+				10: "Server C",
+				ot1: "Default"
+			},
+			port: {
+				t1: "Serial port parameters setting",
+				t2: "Internal server parameters setting",
+				1: "Baud rate",
+				2: "Data bit",
+				3: "Parity bit",
+				4: "Stop bit",
+				5: "CTSRTS",
+				6: "Protocol",
+				7: "Port",
+				8: "Server address",
+				9: "Max. TCP connections (1-32)",
+				10: "TCP time out setting(no more than 600s)"
+			},
+			wirepoint: {
+				t1: "Access point setting",
+				t2: "Security setting",
+				t3: "LAN parameters setting",
+				1: "Network mode",
+				2: "Network name(SSID)",
+				3: "Module MAC address",
+				4: "Select channel",
+				5: "Auto-select",
+				6: "Transmission power",
+				7: "High",
+				8: "Medium",
+				9: "Low",
+				10: "Encryption mode",
+				11: "WEP encryption",
+				12: "Password (5 or 13 ASCII)",
+				13: "Password (10 or 26 HEX)",
+				14: "WPA encryption",
+				15: "Encryption algorithm",
+				16: "Password (8 to 63 characters)",
+				17: "IP address (DHCP gateway setting)",
+				18: "Subnet mask",
+				19: "DHCP Server",
+				20: "Disabled",
+				21: "Enable",
+				22: "Domain name",
+				23: "(The domain name should be within 1-30 characters, and could be combination of alphabets and numbers, but alphabets must be included)",
+				24: "Current user name",
+				// 25: "user name (Max.15 characters)",
+				25: "Network name(SSID)",
+				26: "Re-enter user name",
+				// 27: "New password (Max.15 characters)",
+				27: "Password (Max.15 characters)",
+				28: "Re-enter password",
+				29: "Change the encryption mode for AP",
+				30: "Access point setting"
+			},
+			account: {
+				t1: "Set a new account and password",
+				1: "Current user name",
+				2: "New user name",
+				3: "Re-enter user name",
+				4: "New password",
+				5: "Re-enter password"
+			},
+			update: {
+				t1: "Upgrade firmware",
+				t2: "Upgrade inverter software",
+				1: "Current version:",
+				2: "★Note:The upgrade will take about one minute. During upgrade, please make sure that your computer is always connected with the device, and the device must be always power on, otherwise the device will be damaged permanently.",
+				3: "Current version:"
+			},
+			restart: {
+				t1: "Restart device",
+				1: "<font class='b'>★Important:</font><br /><br />After restart, you will need to re-login the configuration interface. <br /><br />It is recommended to restart after completing all configurations.<br /><br />Restart will interrupt the network for a very short period, are you sure to restart now?"
+			},
+			reset: {
+				t1: "Restore factory setting",
+				1: "<font class='b'>★Important:</font><br /><br />After restoring factory settings, all users’ configuration will be deleted. You can reconfigure it on http://10.10.100.254. Password is “123456789”. <br /><br />Are you sure to reset now?"
+			},
+			commit: {
+				t1: "Set up finished, the monitoring stick will now attempt to connect to the network.",
+				t2: "Rebooting successful!",
+				t3: "Reset successful!",
+				t4: "Saved successfully!",
+				t5: "Enable wireless function",
+				1: "Note:<br />&nbsp;&nbsp;&nbsp;&nbsp;It takes about 10s for the monitoring stick to connect to the network. If the green LED on the stick turns solid, it means the setup was successful.<br / ><br / >&nbsp;&nbsp;&nbsp;&nbsp;If the green LED keeps flashing, and the AP is still available, please reconnect to the stick and redo the setup. Make sure you enter the correct Wi-Fi password.<br / ><br / >&nbsp;&nbsp;&nbsp;&nbsp;For more assistance and troubleshooting, please see the installation manual or Dealer Support website.",
+				2: "To re-login the configuration interface, please make sure that your computer or smart phone and our device are in the same network segment, and enter the new IP address of the device to access the interface.",
+				3: 'You can manually close this page; or reconnect the network of the device and re-login the <a onClick="window.parent.relogin()" style="cursor:pointer; text-decoration:underline;color:#666666;font-weight:bold;">configuration interface</a>.',
+				4: "Configurations will take effect after restart.<br /><br />After restart, you will need to re-login the configuration interface for other settings, so it is recommended to restart after completing all settings.<br /><br />Please click [Restart] to restart now, or click [Back] to continue setting and restart later with the restart function on left menu.",
+				5: "The wireless function has been turned off. If you wish to set wireless connection, please enable the wireless function first.<br /><br />After enabling this function, the system will restart and the network will be suspended for a short while. <br /><br />Are you sure to enable wireless function now?",
+				6: "Successful setup!"
+			}
+		};
+		var tip_en = {
+			1: "Enable",
+			2: "Disable",
+			3: "Connected",
+			4: "Not connected",
+			5: "s",
+			6: "No WiFi selected!",
+			7: "The password is empty!",
+			8: "Passwords not match!",
+			9: "Invalid IP address!",
+			10: "Invalid subnet mask!",
+			11: "Invalid gateway address!",
+			12: "Invalid DNS server address!",
+			13: "Please enter 5 or 13 ASCII!",
+			14: "Please enter 10 or 26 Hex!",
+			15: "Please enter 8-63 characters!",
+			16: "Please enter the password!",
+			17: "Invalid MAC address!",
+			18: "Please select the file!",
+			19: "Are you sure to upgrade?",
+			20: "The user name is empty!",
+			21: "User names not match!",
+			22: "Incorrect port!",
+			23: "The port number must be less than 65535!",
+			24: "Incorrect Max. TCP connections!",
+			25: "Max. TCP connections are no more than 32!",
+			26: "Incorrect TCP time out setting!",
+			27: "Max. TCP time-out period is no more than 600s!",
+			28: "Invalid server address!",
+			29: "Please enter the valid port number!",
+			30: "Invalid domain name format!",
+			31: "Connection to WiFi network failed, invalid encryption method or wrong passwords.",
+			32: "Connecting",
+			33: "Password must contain minimum 8 characters!",
+			34: "Please select the encryption type for WEP. Please check your wireless router to get the valid type. If a wrong type is selected, setting may fail. ",
+			35: "Please enter valid passwords according to the following requirements:\n    Hexadecimal: 10 or 26 characters, combination of characters between 0-9, a-f, A-F\n    ASCII: 5 or 13 characters, combination of characters between 0-9, a-f, A-F",
+			36: "Warnning: your password cannot be verified by this encryption.",
+			37: "The inverter software upgrade failed, please try again !",
+			38: "",
+			39: "Inverter software upgrade is successful. The module will restart automatically, please close this page.",
+			40: "SSID can not be empty!",
+			41: "Unknow",
+			42: "Communication interruption and upgrade failure. Please power off the inverter and re-power, then you can restart upgrade!"
+		};
+		var servertip_en = {
+			h1: " Server A",
+			h2: " Server B",
+			h3: " Server C",
+			1: "Please input port of",
+			2: "!",
+			3: "Please input IP address and domain name of",
+			4: "!",
+			5: "Incorrect IP address of",
+			6: "!",
+			7: "Incorrect port of",
+			8: "!",
+			9: "The port number must be less than 65535!"
+		};
+
+		function initLan() {
+			var help_list = help_en;
+			var opt_list = opt_en;
+			setFont();
+			switch (slanV) {
+				case "CN":
+					help_list = help_cn;
+					opt_list = opt_cn;
+					break;
+				case "EN":
+					help_list = help_en;
+					opt_list = opt_en;
+					break
+			}
+			getCon("op_t1").innerHTML = opt_list["1"].t;
+			getCon("op_t3").innerHTML = opt_list["3"].t;
+			getCon("op_t5").innerHTML = opt_list["5"].t; 
+			// getCon("op_t52").innerHTML = opt_list["52"].t;  //保留以后用
+			getCon("op_t54").innerHTML = opt_list["54"].t;
+			// getCon("op_t7").innerHTML = opt_list["7"].t;
+			// getCon("op_t71").innerHTML = opt_list["71"].t;
+			// getCon("op_t72").innerHTML = opt_list["72"].t;
+			getCon("op_t8").innerHTML = opt_list["8"].t;
+			getCon("op_t9").innerHTML = opt_list["9"].t;
+			getCon("help_tit").innerHTML = opt_list["help"].t;
+			getCon("help_1").innerHTML = help_list["1"].t;
+			// getCon("help_2_1").innerHTML = help_list["21"].t;
+			// getCon("help_2_2").innerHTML = help_list["22"].t;
+			// getCon("help_2_3").innerHTML = help_list["23"].t;
+			// getCon("help_2_4").innerHTML = help_list["24"].t;
+			// getCon("help_2_5").innerHTML = help_list["25"].t;
+			// getCon("help_2_6").innerHTML = help_list["26"].t;
+			// getCon("help_2_7").innerHTML = help_list["27"].t;
+			getCon("help_3_1").innerHTML = help_list["31"].t;
+			getCon("help_3_2").innerHTML = help_list["32"].t;
+			getCon("help_4").innerHTML = help_list["4"].t;
+			getCon("help_5_1").innerHTML = help_list["51"].t;
+			// getCon("help_5_2").innerHTML = help_list["52"].t;  //保留以后用
+			getCon("help_5_3").innerHTML = help_list["53"].t;
+			getCon("help_5_4").innerHTML = help_list["54"].t;
+			getCon("help_6").innerHTML = help_list["6"].t;
+			getCon("help_7_1").innerHTML = help_list["71"].t;
+			getCon("help_7_2").innerHTML = help_list["72"].t;
+			getCon("help_8").innerHTML = help_list["8"].t;
+			getCon("help_9").innerHTML = help_list["9"].t;
+			getCon("help_res").innerHTML = help_list["res"].t
+		}
+
+		function setFont() {
+			if (slanV == "CN") {
+				getCon("main").style.fontFamily = "微软雅黑"
+			} else {
+				getCon("main").style.fontFamily = "Arial"
+			}
+		}
+
+		function reFont() {
+			if (slanV == "CN") {
+				return "微软雅黑"
+			} else {
+				return "Arial"
+			}
+		}
+
+		function getCon(id) {
+			return document.getElementById(id)
+		}
+
+		function changeLan(lan) {
+			switch (lan) {
+				case "CN":
+					getCon("lang_iframe_id").src = "set_lang_zhcn.html";
+					break;
+				case "EN":
+					getCon("lang_iframe_id").src = "set_lang_en.html";
+					break
+			}
+			slanV = lan;
+			initLan();
+			if (child_page) {
+				child_page.window.initPageText()
+			}
+		}
+		var sel = 1;
+
+		function opt_sel(v) {
+			getCon("op_" + sel).className = "opt_no";
+			getCon("op_" + v).className = "opt_sel";
+			sel = v;
+			initDiv(v);  //显示页面
+			show_help(v) //显示的帮助
+		}
+
+		function super_opt(v, t) {  //2 5
+			hide("help_res");
+			var child = document.getElementById("child_page");
+			child.style.display = "none";
+			if (t == 5) {
+				show("help_5");
+				for (var i = 1; i <= 4; i++) {
+					if (i == v) {
+						show("div_5_" + i);
+						var cont = document.getElementById("op_5_" + v);
+						if (	cont) {
+							cont.className = "opt_sel2"
+						}
+					} else {
+						hide("div_5_" + i);
+						var cont = document.getElementById("op_5_" + i);
+						if (cont) {
+							cont.className = "opt_no2"
+						}
+					}
+				}
+				switch (v) {
+					case 1:
+						child.src = getUrl(51);
+						break;
+					case 2:
+						child.src = getUrl(52);
+						break;
+					case 3:
+						child.src = getUrl(53);
+						break;
+					case 4:
+						child.src = getUrl(54);
+						break
+				}
+				div_5_help(v)
+			} else {
+				show("help_7");
+				for (var i = 1; i <= 2; i++) {
+					if (i == v) {
+						show("div_7_" + i);
+						var cont = document.getElementById("op_7_" + v);
+						if (cont) {
+							cont.className = "opt_sel2"
+						}
+					} else {
+						hide("div_7_" + i);
+						var cont = document.getElementById("op_7_" + i);
+						if (cont) {
+							cont.className = "opt_no2"
+						}
+					}
+				}
+				switch (v) {
+					case 1:
+						child.src = getUrl(71);
+						break;
+					case 2:
+						child.src = getUrl(72);
+						break
+				}
+				div_7_help(v)
+			}
+		}
+
+		function initDiv(v) {  //v=5
+			hide("help_res");
+			var child = document.getElementById("child_page");   //iframe
+			child.style.display = "none";
+			child.src = getUrl(v);
+			if (v == 2) {
+				div_2_help(1)
+			}
+			if (v == 3) {
+				div_3_help(1)
+			}
+			if (v == 5) { //进入  下面的两个参数4   原本是2
+				div_5_help(4);
+				show("op_5_sel");
+				super_opt(4, 5)
+			} else {
+				hide("op_5_sel")
+			}
+			if (v == 7) {
+				div_7_help(1);
+				show("op_7_sel");
+				super_opt(1, 7)
+			} else {
+				hide("op_7_sel")
+			}
+		}
+
+		function getUrl(v) {
+			switch (v) {
+				case 1:
+					return "status.html";
+					break;
+				case 3:
+					return "wireless.html";
+					break;
+				case 4:
+					return "cable.html";
+					break;
+				case 6:
+					return "account.html";
+					break;
+				case 7:
+					return "update.html";
+					break;
+				case 8:
+					return "restart.html";
+					break;
+				case 9:
+          return "reset.html";
+          break;
+				case 51:
+					return "select.html";
+					break;
+				case 52:
+					return "remote.html";
+					break;
+				case 53:
+					return "port.html";
+					break;
+				case 54:
+					return "wirepoint.html";
+					break;
+				case 71:
+					return "update.html";
+					break;
+				case 72:
+					return "invupdate.html";
+					break
+			}
+		}
+
+		function div_2_help(v) {
+			for (var i = 1; i <= 7; i++) {
+				if (i == v) {
+					show("help_2_" + i)
+				} else {
+					hide("help_2_" + i)
+				}
+			}
+		}
+
+		function div_3_help(v) {
+			for (var i = 1; i <= 2; i++) {
+				if (i == v) {
+					show("help_3_" + i)
+				} else {
+					hide("help_3_" + i)
+				}
+			}
+		}
+
+		function div_5_help(v) {  //v=2
+			for (var i = 1; i <= 4; i++) {
+				if (i == v) {
+					show("help_5_" + i)
+				} else {
+					hide("help_5_" + i)
+				}
+			}
+		}
+
+		function div_7_help(v) {
+			for (var i = 1; i <= 2; i++) {
+				if (i == v) {
+					show("help_7_" + i)
+				} else {
+					hide("help_7_" + i)
+				}
+			}
+		}
+
+		function show(v) {
+			var c = document.getElementById(v);
+			if (c != null) {
+				c.style.display = ""
+			}
+		}
+
+		function hide(v) {
+			var c = document.getElementById(v);
+			if (c != null) {
+				c.style.display = "none"
+			}
+		}
+
+		function show_help(v) {
+			for (var i = 1; i <= 9; i++) {
+				var c = document.getElementById("help_" + i);
+				if (c != null) {
+					if (i == v) {
+						c.style.display = ""
+					} else {
+						c.style.display = "none"
+					}
+				}
+			}
+		}
+
+		function child_height(v) {
+			var a = document.getElementById("child_page"); //iframe的高度
+			if (a != null) {
+				a.style.height = v + "px"
+			}
+			var b = document.getElementById("back_div"); //包裹iframe的div
+			if (b != null) {
+				b.style.height = v + "px"
+			}
+			var c = document.getElementById("menu_div");
+			if (c != null) {
+				c.style.height = v + "px"
+			}
+			var d = document.getElementById("help");
+			if (d != null) {
+				// d.style.height = v + "px"
+			}
+			var e = document.getElementById("help_msg_div");
+			if (e != null) {
+				e.style.height = (v - 39) + "px"
+			}
+		}
+
+		function show_ifr() {
+			document.getElementById("child_page").style.display = ""
+		}
+
+		function rt(page, num) {
+			switch (slanV) {
+				case "CN":
+					return main_cn[page][num];
+					break;
+				case "EN":
+					return main_en[page][num];
+					break
+			}
+			return main_en[page][num]
+		}
+
+		function reBtn(num) {
+			switch (slanV) {
+				case "CN":
+					return btn_cn[num].t;
+					break;
+				case "EN":
+					return btn_en[num].t;
+					break
+			}
+			return btn_en[num].t
+		}
+
+		function reList(page) {
+			switch (slanV) {
+				case "CN":
+					return main_cn[page];
+					break;
+				case "EN":
+					return main_en[page];
+					break
+			}
+			return main_en[page]
+		}
+
+		function reTip(num) {
+			console.log(slanV)
+			switch (slanV) {
+				case "CN":
+					return tip_cn[num];
+					break;
+				case "EN":
+					return tip_en[num];
+					break
+			}
+			return tip_en[num]
+		}
+
+		function alertTip(num) {
+			switch (slanV) {
+				case "CN":
+					alert(tip_cn[num]);
+					return;
+					break;
+				case "EN":
+					alert(tip_en[num]);
+					return;
+					break
+			}
+			alert(tip_en[num])
+		}
+
+		function showtip2(c, d) {
+			var server_list = servertip_en;
+			switch (slanV) {
+				case "CN":
+					server_list = servertip_cn;
+					break;
+				case "EN":
+					server_list = servertip_en;
+					break
+			}
+			switch (c) {
+				case 3:
+					alert(server_list["1"] + server_list["h" + (d + 1)] + server_list["2"]);
+					break;
+				case 4:
+					alert(server_list["3"] + server_list["h" + (d + 1)] + server_list["4"]);
+					break;
+				case 5:
+					alert(server_list["5"] + server_list["h" + (d + 1)] + server_list["6"]);
+					break;
+				case 6:
+					alert(server_list["7"] + server_list["h" + d] + server_list["8"]);
+					break;
+				case 7:
+					alert(server_list["9"]);
+					break
+			}
+		}
+
+		function init_page() {
+			document.getElementById("child_page").src = "status.html"
+		}
+		function unfold(){
+			// expand
+			var help = document.getElementById("help_msg_div")
+			var expand = document.getElementById("expand")
+			if(help.style.display == 'none'){
+				help.style.display = 'block'
+				expand.className = 'expand2'
+			}else{
+				help.style.display = 'none'
+				expand.className = 'expand'
+			}
+			
+		}
+	</script>
+	<script type="text/javascript">
+		var slanV = "EN";
+	</script>
+</head>
+
+<body style="background-color:#F5F6F8" onload="init_page();">
+	<div id="main" style="width:960px;margin-left:auto;margin-right:auto;margin-top:15px">
+		<iframe id="lang_iframe_id" style="border-style:none;width:0px;height:0px"></iframe>
+		<div style="width:50%;float:left;height:42px"></div>
+		<div style="width:50%;float:left;height:22px;margin-top:16px;text-align:right;"><a class="lan lan_r "
+				style="font-family:微软雅黑" onclick="changeLan('CN')">中文</a>
+			<font style="font-size: 12px;color: #0163AC">|</font><a class="lan" style="font-family:Arial"
+				onclick="changeLan('EN')">English</a>
+		</div>
+		<div class="cl"></div>
+		<div id="menu_div" style="width:140px;height:501px" class="back_div rad_l">
+			<div class="sp_40"></div>
+			<div id="op_1" class="opt_sel" onclick="opt_sel(1)">
+				<div class="opt" id="op_t1"></div>
+			</div>
+			<div id="op_3" class="opt_no" onclick="opt_sel(3)">
+				<div class="opt" id="op_t3"></div>
+			</div>
+			<div id="op_5" class="opt_no" onclick="opt_sel(5)">
+				<div class="opt" id="op_t5"></div>
+			</div>
+			<div id="op_5_sel" style="display:none">
+				<div id="op_5_4" class="opt_no2" onclick="super_opt(4,5)">
+					<div class="opt2" id="op_t54"></div>
+				</div>
+			</div>
+			<div id="op_8" class="opt_no" onclick="opt_sel(8)">
+				<div class="opt" id="op_t8"></div>
+			</div>
+			<div id="op_9" class="opt_no" onclick="opt_sel(9)">
+        <div class="opt" id="op_t9"></div>
+      </div>
+		</div>
+		<div id="back_div" style="width:600px" class="back_div rad_r">
+			<iframe id="child_page" name="child_page" frameborder="0" 
+				style="border-style:none;width:100%;height:500px;border-spacing:0px" scrolling="no"
+				allowTransparency="true"></iframe>
+		</div>
+		<div id="help" class="back_div2 rad_a"  >
+			<div class="lab_b rad_t" onclick="unfold()">
+				<div id="expand" class="expand" ></div>
+				<div id="help_tit" style="padding-top:10px;width:160px"></div>
+			</div>
+			<div id="help_msg_div" class="rad_b" style="height:460px; overflow:auto;display: none">
+				<div style="padding-top:15px;padding-left:10px;padding-right:10px;padding-bottom:30px">
+					<div class="cl"></div>
+					<div class="lab_h" id="help_1"></div>
+					<div class="lab_h" id="help_2" style="display:none">
+						<div id="help_2_1"></div>
+						<div id="help_2_2"></div>
+						<div id="help_2_3"></div>
+						<div id="help_2_4"></div>
+						<div id="help_2_5"></div>
+						<div id="help_2_6"></div>
+						<div id="help_2_7"></div>
+					</div>
+					<div class="lab_h" id="help_3" style="display:none">
+						<div id="help_3_1"></div>
+						<div id="help_3_2"></div>
+					</div>
+					<div class="lab_h" id="help_4" style="display:none"></div>
+					<div class="lab_h" id="help_5" style="display:none">
+						<div id="help_5_1"></div>
+						<!-- <div id="help_5_2"></div> -->
+						<div id="help_5_3"></div>
+						<div id="help_5_4"></div>
+					</div>
+					<div class="lab_h" id="help_6" style="display:none"></div>
+					<div class="lab_h" id="help_7" style="display:none">
+						<div id="help_7_1"></div>
+						<div id="help_7_2"></div>
+					</div>
+					<div class="lab_h" id="help_8" style="display:none"></div>
+					<div class="lab_h" id="help_9" style="display:none"></div>
+					<div class="lab_h" id="help_res" style="display:none"></div>
+				</div>
+			</div>
+		</div>
+		<div class="cl"></div>
+		<div class="sp_20"></div>
+		<div class="bot_txt">Web Ver:1.0.0</div>
+	</div>
+	<script type="text/javascript">
+		setFont();  //选择字体
+		initLan();  //选择帮助
+		opt_sel(1);  //tab切换的背景色
+	</script>
+</body>
+
+</html>

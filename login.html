@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title></title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: "微软雅黑"
+    }
+    .alert{
+      width: 450px;
+      /* height: 300px; */
+      min-height: 170px;
+      position: absolute;
+      left: 50%;
+      top:50%;
+      margin-left: -240px;
+      margin-top: -150px;
+      border: 1px solid #aaaaaa;
+      padding: 25px 15px;
+    }
+    .user,.password{
+      margin-top: 10px;
+    }
+    .user span,.password span{
+      font-size: 14px;
+      display: inline-block;
+      width: 83px;
+      margin-top: -5px;
+      vertical-align: middle;
+    }
+    .user input,.password input{
+      width: 80%;
+      height: 25px;
+      border-radius: 5px;
+      border: 1px solid #aaaaaa;
+    }
+    .btn{
+      margin-top: 40px;
+      float: right;
+    }
+    .btn button{
+      width:100px;
+      height: 35px;
+      background: #fff;
+      border-radius: 5px;
+      border: 1px solid #aaaaaa;
+      cursor: pointer;
+    }
+    .btn #confirm{
+      margin-right: 3px;
+      background: #018AE8;
+      color: #fff;
+      border: none;
+    }
+    .prompt{
+      margin-top: 15px;
+      margin-left: 86px;
+      font-size: 12px;
+    }
+    #prompt{
+      color: red; 
+      display: none;
+    }
+    .box{
+      width: 25px;
+      height: 12.5px;
+      border:1px solid black;
+      /* background-color: blue; */
+      border-radius: 25px 25px 0 0;
+      border-color: black black transparent transparent;
+      transform:rotate(-22deg);
+      -ms-transform:rotate(-22deg); 	/* IE 9 */
+      -moz-transform:rotate(-22deg); 	/* Firefox */
+      -webkit-transform:rotate(-22deg); /* Safari 和 Chrome */
+      -o-transform:rotate(-22deg); 	/* Opera */
+    }
+    .box2{
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      border: black solid 1px;
+      background: transparent;
+      margin-left: 10px;
+      margin-top: 6px;
+    }
+		.eye{
+			width: 30px;
+			float: right;
+			margin-top: -23px;
+			cursor: pointer;
+      margin-right: 20px;
+		}
+  </style>
+</head>
+<body>
+  <div class="alert">
+    <p class="login">登录(log in)</p>
+    <!-- <p id="url"></p> -->
+    <!-- <p class="prompt">请输入用户名(please enter user name)</p>
+    <div class="user">
+      <span>用户名<br>(userName)</span>
+      <input id="user" type="text" name="user">
+    </div> -->
+    <p class="prompt">请输入所连路由器密码(Please enter the router password)</p>
+    <div class="password">
+      <span>密码<br>(password)</span>
+      <input id="password" type="password" name="paw" onkeydown=KeyDown()>
+      <div class="eye" onclick="showPassword()">
+          <div class="box">
+            <div id="dian" class=""></div>
+          </div>
+        </div>
+    </div>
+    <!-- <p class="prompt" id="prompt">用户名或密码错误,请重新登陆<br>Username or password is incorrect, please re-login</p> -->
+    <p class="prompt" id="prompt">密码错误,请重新登陆<br>password is incorrect, please re-login</p>
+    <div class="btn">
+      <button id="confirm" onclick="confirm()">登录 (log in)</button>
+    </div>
+  </div>
+</body>
+<script language="javascript" type="text/javascript">
+    function b64EncodeUnicode(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, 
+        function(match, p1) {
+          return String.fromCharCode('0x' + p1);
+        }));
+    }
+    function confirm(){
+      // var user = document.getElementById('user').value
+      var password = document.getElementById('password').value
+      var password2 = encodeURIComponent(password)
+      var prompt = document.getElementById('prompt')
+      // var str = 'Basic ' + b64EncodeUnicode('admin:' + password2)
+      
+      // console.log(user,password)
+      var xhr=new XMLHttpRequest()
+      
+      // xhr.open("get","login.cgi?user="+user+"&password="+password+"&t="+Math.random(),true)
+      xhr.open("get","login.cgi?password="+password2+"&t="+Math.random(),true)
+      // xhr.setRequestHeader("Authorization", str);
+      xhr.send()
+      xhr.onreadystatechange=function(){
+        if(xhr.readyState==4&&xhr.status==200){
+          console.log(xhr.responseText)
+          // let data = Trim(xhr.responseText)
+          if(xhr.responseText.indexOf("login_success") != -1){
+            // localStorage.setItem('qwer',str)
+            window.location.href = 'index.html'
+            prompt.style.display = 'none'
+            
+
+          }else{
+            console.log("登陆失败")
+            prompt.style.display = 'block'
+          }
+          
+        }
+      }
+    }
+    function showPassword(){
+			var ipt = document.getElementById("password")
+			var dian = document.getElementById("dian")
+
+			console.log(ipt.type)
+			if(ipt.type == "password"){
+				ipt.type = "text"
+				dian.className = "box2"
+				
+			}else{
+				ipt.type = "password"
+				dian.className = ""
+			}
+    }
+    function KeyDown(e){
+      var e = e || window.event
+      if (e.keyCode == 13){
+        // console.log(';;;;')
+        confirm()
+      }
+    }
+</script>
+
+</html>

@@ -1,0 +1,187 @@
+<HTML>
+
+<HEAD>
+  <title>M2M Web Server</title>
+  <META http-equiv=Content-Type content="text/html" charset="gb2312">
+  <style type="text/css">
+    .in_body {
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      background-color: transparent;
+    }
+
+    .div_c {
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .b {
+      font-weight: bold;
+    }
+
+    .blue {
+      color: #f18a15;
+    }
+
+    .s16 {
+      font-size: 16px;
+    }
+
+    .white {
+      color: #666666;
+    }
+
+    .sp_50 {
+      width: 10px;
+      height: 50px;
+    }
+
+    .lab_4 {
+      margin-left: 70px;
+      margin-right: 50px;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .tr {
+      text-align: right;
+    }
+
+    .btn {
+      width: 80px;
+      height: 30px;
+      background-color: #f18a15;
+      border-style: none;
+      font-weight: bold;
+      border-radius: 3px 3px 3px 3px;
+      font-size: 14px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+  <script type="text/javascript">
+    var md5_c = "0,0";
+
+    function fileText(id, value) {
+      if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = value;
+      }
+    }
+
+    function fileValue(id, num) {
+      if (document.getElementById(id)) {
+        document.getElementById(id).value = window.parent.reBtn(num);
+      }
+    }
+
+    function changeFont() {
+      reCon("main_div").style.fontFamily = window.parent.reFont();
+    }
+
+    function reCon(id) {
+      return document.getElementById(id);
+    }
+    var height = 0;
+
+    function child_getH() {
+      var nh = document.body.offsetHeight + 100;
+      if (nh < 500 || nh == null) {
+        nh = 500;
+      }
+      if (height != nh) {
+        height = nh;
+        window.parent.child_height(height);
+      }
+    }
+
+    function ready() {
+      try {
+        window.parent.show_ifr();
+      } catch (e) {
+
+      }
+      child_getH();
+    }
+  </script>
+  <script type="text/javascript">
+    function initPageText() {
+      var list = window.parent.reList("commit");
+      for (var i = 1; i <= 5; i++) {
+        fileText("tit" + i, list["t" + i]);
+      }
+      for (var i = 1; i <= 5; i++) {
+        fileText("tx" + i, list[i]);
+      }
+      fileValue("btn1", "10");
+      fileValue("btn2", "11");
+      fileValue("btn3", "10");
+      fileValue("btn4", "11");
+      fileValue("btn5", "8");
+      fileValue("btn6", "11");
+      changeFont();
+      child_getH();
+      if (md5_c != null && md5_c != "") {
+        var s = md5_c.split(",");
+        if (s[0] == "1" && s[1] == "0") {
+          window.parent.alertTip("42");
+        }
+      }
+    }
+    function b64EncodeUnicode(str) {
+      return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, 
+        function(match, p1) {
+          return String.fromCharCode('0x' + p1);
+        }));
+    }
+    function restart(){
+      // var str = localStorage.getItem('qwer')
+      var xhr=new XMLHttpRequest()
+			xhr.open("get","restart.cgi?t="+Math.random(),true)
+      // xhr.setRequestHeader("Authorization", str);
+			xhr.send()
+			xhr.onreadystatechange=function(){
+				if(xhr.readyState==4&&xhr.status==200){
+					console.log(xhr.responseText)
+					if(xhr.responseText.indexOf("begin_restart") != -1){
+						// result = true
+						// window.location.href = 'login.html'
+					}else{
+						// result = false
+            console.log('重启失败')
+					}
+					
+				}
+			}
+    }
+  </script>
+</HEAD>
+
+<body class="in_body">
+  <iframe width="0px" height="0px" id="cmd_iframe_id" style="border-style:none"></iframe>
+  <form name="form_do_cmd" method="get" action="">
+    <INPUT type=hidden name=HF_PROCESS_CMD value=RESTART>
+    <div class="div_c white" style="font-size:14px;" id="main_div">
+      <div class="s16 b" id="tit4"></div>
+      <div class="sp_50"></div>
+      <div class="lab_4">
+        <font id="tx4"></font>
+        <div class="sp_50"></div>
+      </div>
+      <div class="lab_4 tr">
+        <!-- <input type="button" style="margin-right:20px" class="btn" id="btn1" onClick="restart" /> -->
+          <input type="button" class="btn" id="btn2" onClick="window.parent.location.href='index.html'" />
+      </div>
+    </div>
+  </form>
+  <script type="text/javascript">
+    initPageText();
+    ready();
+    window.parent.child_height(500);
+  </script>
+</body>
+
+</html>

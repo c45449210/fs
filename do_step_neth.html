@@ -1,0 +1,134 @@
+<HTML>
+
+<HEAD>
+  <title>M2M Web Server</title>
+  <META http-equiv=Content-Type content="text/html" charset="utf-8">
+  <style type="text/css">
+    .in_body {
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      background-color: transparent;
+    }
+
+    .div_c {
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .b {
+      font-weight: bold;
+    }
+
+    .s16 {
+      font-size: 16px;
+    }
+
+    .white {
+      color: #666666;
+    }
+
+    .lab_4 {
+      margin-left: 30px;
+      margin-right: 50px;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .sp_70 {
+      width: 10px;
+      height: 70px;
+    }
+  </style>
+  <script type="text/javascript">
+    function fileText(id, value) {
+      if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = value;
+      }
+    }
+
+    function fileValue(id, num) {
+      if (document.getElementById(id)) {
+        document.getElementById(id).value = window.parent.reBtn(num);
+      }
+    }
+
+    function changeFont() {
+      reCon("main_div").style.fontFamily = window.parent.reFont();
+    }
+
+    function reCon(id) {
+      return document.getElementById(id);
+    }
+    var height = 0;
+
+    function child_getH() {
+      var nh = document.body.offsetHeight + 100;
+      if (nh < 500 || nh == null) {
+        nh = 500;
+      }
+      if (height != nh) {
+        height = nh;
+        window.parent.child_height(height);
+      }
+    }
+
+    function ready() {
+      try {
+        window.parent.show_ifr();
+      } catch (e) {
+
+      }
+      child_getH();
+    }
+  </script>
+  <script type="text/javascript">
+    function initPageText() {
+      //从index.html  加载commit
+      var list = window.parent.reList("commit");
+      //加载title
+      for (var i = 1; i <= 5; i++) {
+        fileText("tit" + i, list["t" + i]);
+      }
+      //加载text
+      for (var i = 1; i <= 5; i++) {
+        fileText("tx" + i, list[i]);
+      }
+      fileValue("btn1", "10");
+      fileValue("btn2", "11");
+      fileValue("btn3", "10");
+      fileValue("btn4", "11");
+      fileValue("btn5", "8");
+      fileValue("btn6", "11");
+      changeFont();
+      child_getH();
+    }
+
+    function restart() {
+      document.getElementById("cmd_iframe_id").src = "autorestart.html";
+    }
+
+    function initlan() {
+      // setTimeout("restart()", 2000);
+    }
+  </script>
+</HEAD>
+
+<body class="in_body" onload="initlan()">
+  <iframe width="0px" height="0px" id="cmd_iframe_id" style="border-style:none"></iframe>
+  <div class="div_c white" style="font-size:14px;" id="main_div">
+    <div class="s16 b" id="tit1"></div>
+    <div class="sp_70"></div>
+    <div class="lab_4" id="tx1"></div>
+  </div>
+  <script type="text/javascript">
+    initPageText();
+    ready();
+    window.parent.child_height(500);
+  </script>
+</body>
+
+</html>

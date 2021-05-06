@@ -1,0 +1,842 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <style type="text/css">
+      .in_body {
+        margin-top: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        background-color: transparent;
+      }
+
+      .div_c {
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+
+      .fw {
+        float: left;
+        width: 50%;
+        margin-left: 3%;
+      }
+
+      .btn {
+        width: 80px;
+        height: 30px;
+        background-color: #f18a15;
+        border-style: none;
+        font-weight: bold;
+        border-radius: 3px 3px 3px 3px;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+      }
+
+      .line {
+        height: 1px;
+        background-color: #666666;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .label {
+        float: left;
+        width: 32%;
+        color: #666666;
+        margin-bottom: -2px;
+        font-size: 14px;
+        text-align: right;
+      }
+
+      .cl {
+        clear: left;
+        margin: 10px 0;
+        height: 30px;
+      }
+
+      .text {
+        width: 248px;
+        height: 20px;
+        font-size: 16px;
+        border: solid 1px #7f9db9;
+      }
+
+      .sp_10 {
+        width: 10px;
+        height: 10px;
+      }
+
+      .white {
+        color: #666666;
+      }
+
+      .blue {
+        color: #f18a15;
+      }
+
+      .tr {
+        text-align: right;
+      }
+
+      .fr {
+        width: 100%;
+        text-align: right;
+      }
+
+      .s16 {
+        font-size: 16px;
+      }
+
+      .b {
+        font-weight: bold;
+      }
+
+      .sp_30 {
+        width: 10px;
+        height: 30px;
+      }
+
+      .lab_4 {
+        margin-left: 30px;
+        margin-right: 50px;
+        color: #666666;
+        font-size: 14px;
+      }
+
+      .r10 {
+        margin-right: 10px;
+      }
+
+      .sp_20 {
+        height: 20px;
+        width: 500px;
+      }
+      #tx20 {
+        margin-top: 30px;
+      }
+      input {
+        border-radius: 10px;
+        outline: none;
+        padding-left: 5px;
+      }
+
+      select {
+        border-radius: 10px;
+        padding-left: 5px;
+      }
+      .box {
+        width: 25px;
+        height: 12.5px;
+        border: 1px solid black;
+        /* background-color: blue; */
+        border-radius: 25px 25px 0 0;
+        border-color: black black transparent transparent;
+        transform: rotate(-22deg);
+        -ms-transform: rotate(-22deg); /* IE 9 */
+        -moz-transform: rotate(-22deg); /* Firefox */
+        -webkit-transform: rotate(-22deg); /* Safari 和 Chrome */
+        -o-transform: rotate(-22deg); /* Opera */
+      }
+      .box2 {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        border: black solid 1px;
+        background: transparent;
+        margin-left: 10px;
+        margin-top: 6px;
+      }
+      .eye {
+        width: 30px;
+        float: right;
+        margin-top: -20px;
+        cursor: pointer;
+        margin-right: 20px;
+      }
+      #reset {
+        float: left;
+        font-size: 14px;
+        color: red;
+        display: none;
+      }
+      #div_3_3 {
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+      }
+	  .sp_70 {
+          width: 10px;
+          height: 70px;
+        }
+    </style>
+    <script type="text/javascript">
+      var height = 0;
+
+      function fileText(id, value) {
+        if (document.getElementById(id)) {
+          document.getElementById(id).innerHTML = value;
+        }
+      }
+
+      function changeFont() {
+        reCon("main_div").style.fontFamily = window.parent.reFont();
+      }
+
+      function child_getH() {
+        //调整高度
+        var nh = document.body.offsetHeight + 100;
+        // console.log(nh); //512  高度
+        if (nh < 500 || nh == null) {
+          nh = 500;
+        }
+        //height = 0 nh=512
+        if (height != nh) {
+          height = nh;
+          window.parent.child_height(height);
+        }
+      }
+
+      function reCon(id) {
+        return document.getElementById(id);
+      }
+
+      function ready() {
+        //4
+
+        console.log("ready底部");
+        try {
+          window.parent.show_ifr();
+        } catch (e) {}
+        child_getH();
+      }
+
+      function fileValue(id, num) {
+        if (document.getElementById(id)) {
+          document.getElementById(id).value = window.parent.reBtn(num);
+        }
+      }
+
+      function show(v) {
+        //显示
+        var c = document.getElementById(v);
+        if (c != null) {
+          c.style.display = "";
+        }
+      }
+
+      function hide(v) {
+        //隐藏
+        var c = document.getElementById(v);
+        if (c != null) {
+          c.style.display = "none";
+        }
+      }
+
+      function enableCon(c, v) {
+        var con = document.getElementById(c);
+        if (con != null) {
+          if (v == 1) {
+            con.disabled = "disabled";
+          } else {
+            con.disabled = "";
+          }
+        }
+      }
+
+      function dhcp(v) {
+        //3
+        console.log("dhcp底部");
+        var c = document.getElementById("div_3_dhcp");
+        if (c != null) {
+          if (c.value == "DHCP") {
+            enableCon("div_3_ip", 1);
+            enableCon("div_3_sub", 1);
+            enableCon("div_3_gate", 1);
+            enableCon("div_3_dns", 1);
+          } else {
+            enableCon("div_3_ip", 2);
+            enableCon("div_3_sub", 2);
+            enableCon("div_3_gate", 2);
+            enableCon("div_3_dns", 2);
+          }
+        }
+      }
+
+      function initClock() {
+        // console.log("initClock底部");
+        // console.log(child_getH);
+        var clock = window.setInterval(child_getH, 1000);
+        console.log("initClock", clock);
+      }
+
+      function txtOnfocus2(c) {
+        c.style.border = "solid 1px #f18a15";
+      }
+
+      function txtOnblur2(c) {
+        c.style.border = "solid 1px #7F9DB9";
+      }
+
+      function checkPwd(t, x, c) {
+        if (t == 1) {
+          switch (x) {
+            case 0:
+              if (c.length == 5 || c.length == 13) {
+                var re = /^[0-9,a-z,A-Z]{5,13}$/;
+                if (re.test(c)) {
+                  return true;
+                } else {
+                  window.parent.alertTip("13");
+                  return false;
+                }
+              }
+              break;
+            case 1:
+              var re = /^[0-9,a-f,A-F]{10,26}$/;
+              if (c.length == 10 || c.length == 26) {
+                if (re.test(c)) {
+                  return true;
+                } else {
+                  window.parent.alertTip("14");
+                  return false;
+                }
+              } else {
+                window.parent.alertTip("14");
+                return false;
+              }
+              break;
+            case 3:
+              if (c.length == 5 || c.length == 13) {
+                var re = /^[0-9,a-z,A-Z]{5,13}$/;
+                if (re.test(c)) {
+                  return true;
+                } else {
+                  window.parent.alertTip("35");
+                  return false;
+                }
+              } else {
+                if (c.length == 10 || c.length == 26) {
+                  var re = /^[0-9,a-f,A-F]{10,26}$/;
+                  if (re.test(c)) {
+                    return true;
+                  } else {
+                    window.parent.alertTip("35");
+                    return false;
+                  }
+                } else {
+                  window.parent.alertTip("35");
+                  return false;
+                }
+              }
+              break;
+          }
+        }
+        if (t == 2) {
+          if (c.length >= 8 && c.length <= 63) {
+            return true;
+          } else {
+            window.parent.alertTip("15");
+            return false;
+          }
+        }
+        if (t == 3) {
+          if (c.length >= 8 && c.length <= 64) {
+            return true;
+          } else {
+            window.parent.alertTip("33");
+            return false;
+          }
+        }
+      }
+
+      function checkIP(f, v) {
+        var b = ipAdd(f.wan_setting_ip.value);
+        if (!b) {
+          window.parent.alertTip("9");
+          return false;
+        }
+        var c = ipAdd(f.wan_setting_msk.value);
+        if (!c) {
+          window.parent.alertTip("10");
+          return false;
+        }
+        var d = ipAdd(f.wan_setting_gw.value);
+        if (!d) {
+          window.parent.alertTip("11");
+          return false;
+        }
+        var e = f.wan_setting_dns.value;
+        if (e != "") {
+          if (!ipAdd(e)) {
+            window.parent.alertTip("12");
+            return false;
+          }
+        } else {
+          f.wan_setting_dns.value = f.wan_setting_gw.value;
+        }
+        return true;
+      }
+
+      function ipAdd(v) {
+        var re = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+        return re.test(v);
+      }
+
+      function to_surver(ssid, bssid, channel, auth, encry) {
+        console.log(ssid, bssid, channel, auth, encry);
+
+        var f = document.form_sta_setting;
+        f.sta_setting_wpakey.value = "";
+
+        f.sta_setting_ssid.value = ssid;
+
+        sta_secu_changed();
+        child_getH();
+      }
+      var conn_clock;
+    </script>
+    <script type="text/javascript">
+      var sta_setting_ssid = "";
+      var sta_setting_auth = "";
+      var sta_setting_encry = "";
+      var sta_setting_wpakey = "";
+      var wan_setting_dhcp = "DHCP";
+      var wan_setting_ip = "";
+      var wan_setting_msk = "";
+      var wan_setting_gw = "";
+      var wan_setting_dns = "";
+      var wifi_mode = "";
+      var SSID = "";
+
+      function initPageText() {
+        var list = window.parent.reList("wireless");
+        for (var i = 1; i <= 20; i++) {
+          fileText("tx" + i, list[i]);
+        }
+        fileText("enable", list[21]);
+        fileText("disable", list[22]);	
+        fileText("set_faile_message", list[27]);	
+        fileValue("btn1", "6");
+        fileValue("btn2", "7");
+        fileValue("btn3", "8");
+        fileValue("btn4", "2");
+        fileValue("btn5", "11");
+        changeFont();
+        child_getH();
+      }
+      function search() {
+        hide("div_3_1");
+        show("div_3_2");
+        window.parent.div_3_help(2);
+        document.getElementById("sta_search_iframe").src = "site_survey.html";
+      }
+      function init_sta_setting_form() {
+        //6
+        var f = document.form_sta_setting; //获取from
+
+        f.sta_setting_wpakey.value = sta_setting_wpakey;
+        f.wan_setting_dhcp.value = wan_setting_dhcp;
+        f.wan_setting_ip.value = wan_setting_ip;
+        f.wan_setting_msk.value = wan_setting_msk;
+        f.wan_setting_gw.value = wan_setting_gw;
+        f.wan_setting_dns.value = wan_setting_dns;
+        dhcp(2);
+        if (localStorage.getItem("mode") == "STA") {
+          SSID = localStorage.getItem("SSID");
+          f.sta_setting_ssid.value = SSID;
+        } else {
+          f.sta_setting_ssid.value = "";
+        }
+      }
+
+      function sta_secu_changed() {
+        //2
+        // console.log("sta_secu_changed底部");
+        var f = document.form_sta_setting;
+        show("wpa_key");
+      }
+
+      function changeSSID() {
+        // document.getElementById("sta_search_iframe").src="javascript:false";
+        clearInterval(
+          document.getElementById("sta_search_iframe").contentWindow.timer
+        );
+        console.log(
+          document.getElementById("sta_search_iframe").contentWindow.get_ssid()
+        );
+
+        document.getElementById("wpa_key_text").value = "";
+      }
+      function b64EncodeUnicode(str) {
+        return btoa(
+          encodeURIComponent(str).replace(
+            /%([0-9A-F]{2})/g,
+            function (match, p1) {
+              return String.fromCharCode("0x" + p1);
+            }
+          )
+        );
+      }
+
+      /**
+       * @brief 配网
+       * @param {*}
+       * @return {*}
+       */
+      function sta_form_apply() {
+        var f = document.form_sta_setting;
+        console.log(f);
+        if (f.sta_setting_ssid.value == "") {
+          window.parent.alertTip("13");
+          return;
+        }
+        if (f.sta_setting_wpakey.value == "") {
+          window.parent.alertTip("7");
+          return;
+        }
+        if (f.wan_setting_dhcp.options.selectedIndex == 1) {
+          if (!checkIP(f)) {
+            return;
+          }
+        }
+        // var str = localStorage.getItem('qwer')
+        // if (f.wan_setting_dhcp.value == "DHCP") {
+        var ssid = encodeURIComponent(f.sta_setting_ssid.value);
+        var password = encodeURIComponent(f.sta_setting_wpakey.value);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          // console.log("当前 的  readyState ",xhr.readyState);
+          if (xhr.readyState == 4) {
+            // console.log("返回的xhr完成",xhr.readyState)
+            if (xhr.status == 200) {
+              // console.log("加载状态完成")
+              if (xhr.responseText.indexOf("set_success") != -1) {
+                setTimeout(function () {
+                  window.location.href = "do_step_neth.html";
+                }, 500);
+                //   console.log("收到set_success")
+                //   console.log("页面开始跳转")
+                //   console.log("页面跳转完成")
+              } else if (xhr.responseText.indexOf("set_faile") != -1) {
+                setTimeout(function () {
+                  // window.location.href = "do_step_neth.html";
+                  hide("div_3_1")
+				  show("div_3_3")
+                }, 500);
+				return ;
+              }
+              //    else {
+              //     // setTimeout(function () {
+              //     //   document.getElementById("reset").style.display = "black";
+              //     // }, 5000);
+              //   }
+              console.log(xhr.responseText);
+              console.log("wifi账号密码");
+            }
+          }
+        };
+
+        console.log("readyState 判断结束");
+        xhr.open(
+          "get",
+          "setsta.cgi?ssid=" +
+            ssid +
+            "&password=" +
+            password +
+            "&t=" +
+            Math.random(),
+          true
+        );
+        // xhr.setRequestHeader("Authorization", str);
+        xhr.send();
+        // }
+        // else {
+        //   // if(){}
+        //   var sta_setting_ssid = encodeURIComponent(f.sta_setting_ssid.value);
+        //   var sta_setting_wpakey = encodeURIComponent(
+        //     f.sta_setting_wpakey.value
+        //   );
+        //   var wan_setting_ip = encodeURIComponent(f.wan_setting_ip.value);
+        //   var wan_setting_msk = encodeURIComponent(f.wan_setting_msk.value);
+        //   var wan_setting_gw = encodeURIComponent(f.wan_setting_gw.value);
+        //   var wan_setting_dns = encodeURIComponent(f.wan_setting_dns.value);
+        //   var xhr = new XMLHttpRequest();
+        //   xhr.onreadystatechange = function () {
+        //     if (xhr.readyState == 4 && xhr.status == 200) {
+        //       if (xhr.responseText.indexOf("set_success") != -1) {
+        //         window.location.href = "do_step_neth.html";
+        //       }
+        //       console.log(xhr.responseText);
+        //       console.log("wifi的ip等");
+        //     }
+        //   };
+        //   xhr.open(
+        //     "get",
+        //     "setsta.cgi?ssid=" +
+        //       sta_setting_ssid +
+        //       "&password=" +
+        //       sta_setting_wpakey +
+        //       "&ip=" +
+        //       wan_setting_ip +
+        //       "&msk=" +
+        //       wan_setting_msk +
+        //       "&gw=" +
+        //       wan_setting_gw +
+        //       "&dns=" +
+        //       wan_setting_dns +
+        //       "&t=" +
+        //       Math.random(),
+        //     true
+        //   );
+        //   // xhr.setRequestHeader("Authorization", str);
+        //   xhr.send();
+        // }
+        window.parent.hide("help_3");
+        window.parent.show("help_res");
+        // f.submit();
+      }
+
+      /**
+       * @brief 配网失败 返回 set_faile 后重新返回到配网界面
+       * 	2021年4月17日
+       */
+      function set_faile_back() {
+		hide("div_3_3");
+		show("div_3_2")
+		search()
+      }
+
+      function sta_search() {
+        document.getElementById("sta_search_iframe").src = "site_survey.html";
+      }
+
+      function macCheck(v) {
+        var re = /^(([0-9a-fA-F]{1,2}:){5}[0-9a-fA-F]{1,2},)*([0-9a-fA-F]{1,2}:){5}[0-9a-fA-F]{1,2}$/;
+        return re.test(v);
+      }
+      function showPassword() {
+        var ipt = document.getElementById("wpa_key_text");
+        var dian = document.getElementById("dian");
+
+        console.log(ipt.type);
+        if (ipt.type == "password") {
+          ipt.type = "text";
+          dian.className = "box2";
+        } else {
+          ipt.type = "password";
+          dian.className = "";
+        }
+      }
+    </script>
+  </head>
+
+  <body class="in_body" onload="init_sta_setting_form();sta_secu_changed()">
+    <div class="div_c" id="main_div">
+      <form name="form_sta_setting" method="get">
+        <input type="hidden" name="sta_setting_encry" />
+        <input type="hidden" name="sta_setting_auth" />
+        <input type="hidden" name="wifi_mode" value="STA" />
+        <div id="div_3_1">
+          <div class="label" id="tx1"></div>
+          <div class="fw" style="width: 325px">
+            <input
+              name="sta_setting_ssid"
+              type="text"
+              style="
+                width: 230px;
+                height: 20px;
+                font-size: 16px;
+                border: solid 1px #7f9db9;
+                margin-top: 3px;
+              "
+              onfocus="txtOnfocus2(this)"
+              onblur="txtOnblur2(this)"
+            />
+            <input
+              type="button"
+              class="btn"
+              style="float: right"
+              id="btn1"
+              onclick="search()"
+            />
+          </div>
+          <div class="cl"></div>
+          <div id="wpa_key">
+            <div class="label" id="tx11"></div>
+            <div class="fw">
+              <input
+                name="sta_setting_wpakey"
+                type="password"
+                class="text"
+                id="wpa_key_text"
+                maxlength="64"
+                style="margin-top: 5px"
+                onfocus="txtOnfocus2(this)"
+                onblur="txtOnblur2(this)"
+              />
+              <div class="eye" onclick="showPassword()">
+                <div class="box">
+                  <div id="dian" class=""></div>
+                </div>
+              </div>
+            </div>
+            <div class="cl"></div>
+          </div>
+          <div class="label" id="tx13"></div>
+          <div class="fw">
+            <select
+              name="wan_setting_dhcp"
+              id="div_3_dhcp"
+              style="width: 100px; height: 20px"
+              onchange="dhcp(2)"
+            >
+              <option id="enable" value="DHCP">Enable</option>
+              <option id="disable" value="STATIC">Disable</option>
+            </select>
+          </div>
+          <div class="cl"></div>
+          <div class="label" id="tx14"></div>
+          <div class="fw">
+            <input
+              name="wan_setting_ip"
+              id="div_3_ip"
+              type="text"
+              class="text"
+              onfocus="txtOnfocus2(this)"
+              onblur="txtOnblur2(this)"
+            />
+          </div>
+          <div class="cl"></div>
+          <div class="label" id="tx15"></div>
+          <div class="fw">
+            <input
+              name="wan_setting_msk"
+              id="div_3_sub"
+              type="text"
+              class="text"
+              onfocus="txtOnfocus2(this)"
+              onblur="txtOnblur2(this)"
+            />
+          </div>
+          <div class="cl"></div>
+          <div class="label" id="tx16"></div>
+          <div class="fw">
+            <input
+              name="wan_setting_gw"
+              id="div_3_gate"
+              type="text"
+              class="text"
+              onfocus="txtOnfocus2(this)"
+              onblur="txtOnblur2(this)"
+            />
+          </div>
+          <div class="cl"></div>
+          <div class="label" id="tx17"></div>
+          <div class="fw">
+            <input
+              name="wan_setting_dns"
+              id="div_3_dns"
+              type="text"
+              class="text"
+              onfocus="txtOnfocus2(this)"
+              onblur="txtOnblur2(this)"
+            />
+          </div>
+          <div class="cl"></div>
+          <div class="sp_10"></div>
+          <div class="fr" style="font-size: 14px; color: White">
+            <font style="color: #666666; font-weight: bold" id="tx18"></font>
+          </div>
+          <iframe
+            frameborder="0"
+            style="
+              border-style: none;
+              width: 0px;
+              height: 0px;
+              border-spacing: 0px;
+            "
+            id="conn_test"
+            allowTransparency="true"
+          ></iframe>
+          <div class="white tr" style="margin-top: 10px; font-size: 14px">
+            <font id="tx_conn"></font>
+            <font
+              id="conntest"
+              style="display: inline-block; width: 40px; text-align: left"
+            ></font>
+          </div>
+          <div
+            style="
+              margin-top: 20px;
+              color: white;
+              width: 100%;
+              text-align: right;
+            "
+          >
+            <input
+              onclick="sta_form_apply()"
+              type="button"
+              class="btn"
+              id="btn2"
+            />
+          </div>
+        </div>
+      </form>
+      <div style="display: none" id="div_3_2">
+        <font class="blue s16 b" id="tx19"></font>
+        <div class="sp_30"></div>
+        <div style="width: 520px; height: 300px">
+          <iframe
+            frameborder="0"
+            style="
+              border-style: none;
+              width: 100%;
+              height: 300px;
+              border-spacing: 0px;
+            "
+            id="sta_search_iframe"
+            name="sta_search_iframe"
+            allowTransparency="true"
+          ></iframe>
+        </div>
+        <div
+          style="font-size: 14px; color: #666666; font-weight: bold"
+          id="tx20"
+        ></div>
+        <div class="sp_20"></div>
+        <div class="lab_4 tr">
+          <input
+            type="button"
+            class="btn r10"
+            id="btn3"
+            onclick="hide('div_3_2');show('div_3_1');window.parent.div_3_help(1);changeSSID()"
+          />
+          <input onclick="sta_search()" type="button" class="btn" id="btn4" />
+        </div>
+      </div>
+
+      <div class="div_c white" style="display:none" id="div_3_3">
+        <!-- <div class="s16 b" id="tit1">asd</div> -->
+        <div class="sp_70"></div>
+        <div class="b s16" id="set_faile_message"></div>
+		<div class="sp_70"></div>
+		<input onclick="set_faile_back()" type="button" class="btn" id="btn5" />
+
+      </div>
+    </div>
+    <script type="text/javascript">
+      document.getElementById("sta_search_iframe").src = "javascript:false";
+      initPageText();
+      sta_secu_changed();
+      dhcp(2);
+      ready();
+      initClock();
+    </script>
+  </body>
+</html>

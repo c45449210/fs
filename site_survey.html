@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <title>survey</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .s16 {
+        font-size: 16px;
+      }
+      .td {
+        float: left;
+        width: 25%;
+        min-height: 1px;
+      }
+      input {
+        height: 15px;
+        margin-top: 3px;
+      }
+      .tr {
+        height: 16px;
+        padding: 10px 0;
+        line-height: 16px;
+        font-size: 16px;
+      }
+      .ipt {
+        text-align: left;
+        width: 10%;
+      }
+      #scanSelect {
+        width: 10%;
+      }
+      .scanSSID,
+      #scanSSID {
+        height: 1px;
+        width: 70%;
+      }
+      .scanRSSI,
+      #scanRSSI {
+        width: 20%;
+      }
+      /* .scanChannel,#scanChannel{
+      width: 20%
+    } */
+    </style>
+    <script language="JavaScript" type="text/javascript">
+      var a = true,
+        index = "";
+      function fileText(id, value) {
+        if (document.getElementById(id)) {
+          document.getElementById(id).innerHTML = value;
+        }
+      }
+      function initPageText() {
+        var list = window.parent.parent.reList("wireless");
+        // console.log(list)
+        fileText("scanSiteSurvey", list[23]);
+        fileText("scanSSID", list[24]);
+        fileText("scanRSSI", list[25]);
+        fileText("scanChannel", list[26]);
+      }
+      function selectedSSIDChange(ssid, index1) {
+        index = index1;
+        window.parent.to_surver(ssid, index);
+      }
+      function b64EncodeUnicode(str) {
+        return btoa(
+          encodeURIComponent(str).replace(
+            /%([0-9A-F]{2})/g,
+            function (match, p1) {
+              return String.fromCharCode("0x" + p1);
+            }
+          )
+        );
+      }
+      function search() {
+        // var str = localStorage.getItem('qwer')
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "search.cgi?t=" + Math.random(), true);
+        // xhr.setRequestHeader("Authorization", str);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+          }
+        };
+      }
+      function get_ssid() {
+        // var str = localStorage.getItem('qwer')
+        var data = document.getElementById("data");
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "get_ssid.cgi?t=" + Math.random(), true);
+        // xhr.setRequestHeader("Authorization", str);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 || xhr.status == 200) {
+            var signal_list = xhr.responseText;
+
+            //传输过来的数据格式是字符串,会像下面一样的前后会带有不必要的字符,那是一些http的请求头部
+            // var signal_list = 'asd[{"ssid":" ","rssi":100},{"ssid":"Tenda_4F07E8~@#%&*（-=）","rssi":100},{"ssid":"ginlong1006_Guest","rssi":100},{"ssid":"ginlong1006_183","rssi":100},{"ssid":"ginlong-1006-01","rssi":100},{"ssid":"MXCHIP_E59194","rssi":80},{"ssid":"NO.6","rssi":60},{"ssid":"TP-LINK_4AD5","rssi":60},{"ssid":"MXCHIP_E591BC","rssi":60},{"ssid":"1","rssi":40},{"ssid":"final_end","rssi":"99999"}]asdasds'
+            // console.log("初始的",typeof(signal_list))
+            // console.log("初始的",signal_list)
+
+            // 获取到开头的正确位置
+            var json_start = signal_list.indexOf('[{"');
+            // console.log("json_start ",json_start)
+
+            //获取到请求的结束位置   发送过来的json数据最后一串以{"ssid":"","rssi":""}为末尾,多识别两位保证精确度
+            var json_end = signal_list.indexOf('},{"ssid":"final_end","rssi":"99999"}]') + 1;
+            // console.log("json_end",json_end)
+
+            //裁剪出需要的字符串
+            var json_list = signal_list.substring(json_start, json_end);
+            // console.log("裁剪完成",json_list,"完成")
+
+            //拼接裁剪掉的末尾  ]
+            json_list = json_list + "]";
+            // console.log("finish ",json_list)
+
+            try {
+               //转化为json格式
+               signal_list = JSON.parse(json_list);
+               // console.log("转换完毕后的 final——list",signal_list)
+            } catch (error) {
+              console.log(signal_list)
+            }
+           
+            console.log(signal_list)
+            var html = "",
+              html2 = "";
+            //解析singal对象
+            for (var i = 0; i < signal_list.length; i++) {
+              var arr = signal_list[i];
+              //当发送的wify号为空的时候
+              if (arr.ssid == "" || arr.ssid == undefined || arr.ssid == null) {
+                // html ="<div class='tr'><input class='td ipt check'  type='radio' name=selectedSSID onClick='selectedSSIDChange("+"\""+arr.ssid+"\""+","+i+")'><p class='td scanSSID'>"+"&nbsp;"+"</p><p class='td scanRSSI'>"+arr.rssi+"</p><p class='td scanChannel'>"+arr[2]+"</p></div>"
+                html = "<div></div>";
+              }
+              // else if(arr.ssid.match(/^\s+$/)){
+              //   html ="<div class='tr'><input class='td ipt check'  type='radio' name=selectedSSID onClick='selectedSSIDChange("+"\""+arr.ssid+"\""+","+i+")'><p class='td scanSSID'>"+"&nbsp;"+"</p><p class='td scanRSSI'>"+arr.rssi+"</p><p class='td scanChannel'>"+arr[2]+"</p></div>"
+              // } 
+              else  {
+                // html ="<div class='tr'><input class='td ipt check' type='radio' name=selectedSSID onClick='selectedSSIDChange("+"\""+arr.ssid+"\""+","+i+"  )'><p class='td scanSSID'>"+arr.ssid+"</p><p class='td scanRSSI'>"+arr.rssi+"</p><p class='td scanChannel'>"+arr[2]+"</p></div>"
+                //去除信道数目
+                html =
+                  "<div class='tr' onClick='pitchChecked(this)' ><input class='td ipt check' type='radio' name=selectedSSID ><p class='td scanSSID' >" +
+                  arr.ssid +
+                  "</p><p class='td scanRSSI'>" +
+                  arr.rssi +
+                  "</p></div>";
+              }
+              //拼接字符
+              html2 += html;
+            }
+            //添加到文档中
+            data.innerHTML = html2;
+            var check = document.getElementsByClassName("check")[index];
+            if (check) {
+              check.checked = true;
+            }
+          }
+           else {
+          }
+        };
+      }
+
+      function pitchChecked(obj) {
+        //点击行选中
+        obj.firstElementChild.checked = true;
+        // console.log(obj.firstElementChild.nextElementSibling.innerHTML)
+        //  onClick='selectedSSIDChange("+"\""+arr.ssid+"\""+","+i+"  )'
+        selectedSSIDChange(obj.firstElementChild.nextElementSibling.innerHTML);
+      }
+    </script>
+  </head>
+
+  <body
+    style="
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      background-color: transparent;
+    "
+  >
+    <p id="scanSiteSurvey">Site Survey</p>
+    <div class="tr">
+      <p class="td" id="scanSelect">&nbsp;</p>
+      <p class="td" id="scanSSID">SSID</p>
+      <p class="td" id="scanRSSI">RSSI(%)</p>
+      <!-- <p class="td" id="scanChannel">Channel</p> -->
+    </div>
+    <div id="data"></div>
+  </body>
+  <script>
+    initPageText();
+    search();
+    get_ssid();
+    // var timer = setInterval(function(){
+    //   get_ssid()
+    // },3000)
+    setTimeout(function () {
+      get_ssid();
+    }, 10000);
+  </script>
+</html>

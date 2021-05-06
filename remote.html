@@ -1,0 +1,377 @@
+﻿<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<style type="text/css">
+		.in_body {
+			margin-top: 0px;
+			margin-left: 0px;
+			margin-right: 0px;
+			margin-bottom: 0px;
+			background-color: transparent;
+		}
+
+		.div_c {
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-top: 50px;
+			margin-bottom: 50px;
+		}
+
+		.blue {
+			color: #f18a15;
+		}
+
+		.s16 {
+			font-size: 16px;
+		}
+
+		.b {
+			font-weight: bold;
+		}
+
+		.sp_10 {
+			width: 10px;
+			height: 10px;
+		}
+
+		.cl {
+			clear: left;
+		}
+
+		.sp_5 {
+			height: 5px;
+			width: 500px;
+		}
+
+		.tr {
+			text-align: right;
+		}
+
+		.btn {
+			width: 80px;
+			height: 30px;
+			background-color: #f18a15;
+			border-style: none;
+			font-weight: bold;
+			border-radius: 3px 3px 3px 3px;
+			font-size: 14px;
+			color: white;
+			cursor: pointer;
+		}
+	</style>
+	<style type="text/css">
+		.tab_1 {
+			color: White;
+			font-size: 14px;
+			text-align: center;
+			background-color: #A1A1A2;
+			float: left;
+			margin-left: 3px;
+		}
+
+		.tab_2 {
+			color: #666666;
+			font-size: 14px;
+			float: left;
+			margin-left: 3px;
+		}
+
+		.w_58 {
+			width: 67px;
+		}
+
+		.w_103 {
+			width: 130px;
+		}
+
+		.w_153 {
+			width: 170px;
+		}
+
+		.w_70 {
+			width: 80px;
+		}
+
+		.w_45 {
+			width: 60px;
+		}
+
+		.w_42 {
+			width: 42px;
+		}
+
+		.w_32 {
+			width: 32px;
+		}
+
+		.bor_0 {
+			border-left-width: 0px;
+			border-right-width: 0px;
+			border-top-width: 0px;
+			border-bottom-width: 0px;
+			padding-left: 0px;
+			padding-right: 0px;
+			background-color: #F5F5F5;
+		}
+
+		.tc {
+			text-align: center;
+		}
+
+		.line3 {
+			height: 1px;
+			background-color: #666666;
+			width: 520px;
+			margin-top: 4px;
+			margin-bottom: 4px;
+			margin-left: 4px;
+		}
+
+		.btn_t {
+			width: 30px;
+			height: 20px;
+			border-style: none;
+			border-radius: 3px 3px 3px 3px;
+			font-size: 12px;
+			color: #0163AC;
+			cursor: pointer;
+			margin-top: -1px;
+		}
+	</style>
+	<script type="text/javascript">
+		var height = 0;
+
+		function fileText(id, value) {
+			if (document.getElementById(id)) {
+				document.getElementById(id).innerHTML = value
+			}
+		}
+
+		function changeFont() {
+			reCon("main_div").style.fontFamily = window.parent.reFont()
+		}
+
+		function child_getH() {
+			var nh = document.body.offsetHeight + 100;
+			if (nh < 500 || nh == null) {
+				nh = 500
+			}
+			if (height != nh) {
+				height = nh;
+				window.parent.child_height(height)
+			}
+		}
+
+		function reCon(id) {
+			return document.getElementById(id)
+		}
+
+		function ready() {
+			try {
+				window.parent.show_ifr()
+			} catch (e) {}
+			child_getH()
+		}
+
+		function fileVa(id, value) {
+			if (document.getElementById(id)) {
+				document.getElementById(id).value = value
+			}
+		}
+
+		function fileValue(id, num) {
+			if (document.getElementById(id)) {
+				document.getElementById(id).value = window.parent.reBtn(num)
+			}
+		}
+
+		function txtOnfocus(c) {
+			c.style.border = "solid 1px #f18a15"
+		}
+
+		function txtOnblur(c) {
+			c.style.border = "none"
+		}
+
+		function checkPort(v) {
+			var re = /^[1-9]\d*$/;
+			return re.test(v)
+		}
+
+		function ipAdd(v) {
+			var re =
+				/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+			return re.test(v)
+		};
+	</script>
+
+	<script type="text/javascript">
+		var server_b = ",,,TCP";
+		var server_c = ",,,TCP";
+
+		function initPageText() {
+			var list = window.parent.reList("remote");
+			for (var i = 1; i <= 2; i++) {
+				fileText("tit" + i, list["t" + i])
+			}
+			for (var i = 1; i <= 10; i++) {
+				fileText("tx" + i, list[i])
+			}
+			fileVa("ip_d", list["ot1"]);
+			fileVa("ds_d", list["ot1"]);
+			fileVa("pt_d", list["ot1"]);
+			fileVa("cn_d", list["ot1"]);
+			fileValue("btn4", "7");
+			fileValue("btn5", "7");
+			changeFont();
+			child_getH()
+		}
+
+		function fileTit(id, value) {
+			if (document.getElementById(id)) {
+				document.getElementById(id).title = value
+			}
+		}
+
+		function server_setting_apply(num) {
+			var f = document.form_server_setting;
+			for (var i = 0; i < num; i++) {
+				var j = i + 1;
+				var ip = document.getElementById("ip_" + j).value;
+				var dn = document.getElementById("ds_" + j).value;
+				var port = document.getElementById("pt_" + j).value;
+				if (ip == "") {
+					if (dn == "") {
+						if (port != "") {
+							window.parent.showtip2(4, i);
+							return
+						}
+					} else {
+						if (port == "") {
+							window.parent.showtip2(3, i);
+							return
+						}
+						if (!checkPort(port)) {
+							window.parent.showtip2(6, i);
+							return
+						}
+						if (parseInt(port) >= 65535) {
+							window.parent.showtip2(7, i);
+							return
+						}
+					}
+				} else {
+					if (ipAdd(ip)) {
+						if (port == "") {
+							window.parent.showtip2(3, i);
+							return
+						}
+						if (!checkPort(port)) {
+							window.parent.showtip2(6, i);
+							return
+						}
+						if (parseInt(port) >= 65535) {
+							window.parent.showtip2(7, i);
+							return
+						}
+					} else {
+						window.parent.showtip2(5, i);
+						return
+					}
+				}
+			}
+			f.server_b.value = f.cnmo_ip_b.value + "," + f.cnmo_ds_b.value + "," + f.cnmo_pt_b.value + "," + f.cnmo_tp_b.value;
+			window.parent.hide("help_5_2");
+			f.submit()
+		}
+
+		function init_server_setting_form(showNum) {
+			var f = document.form_server_setting;
+			f.server_b.value = server_b;
+			f.server_c.value = server_c;
+			if (server_b != null && server_b != "") {
+				var sp = server_b.split(",");
+				f.cnmo_ip_b.value = sp[0];
+				f.cnmo_ds_b.value = sp[1];
+				f.cnmo_pt_b.value = sp[2];
+				f.cnmo_tp_b.value = sp[3]
+			}
+			if (server_c != null && server_c != "") {
+				var sp = server_c.split(",");
+				console.log(sp)
+				console.log(f)
+				f.cnmo_ip_a.value = sp[0];
+				f.cnmo_ds_a.value = sp[1];
+				f.cnmo_pt_a.value = sp[2];
+				f.cnmo_tp_a.value = sp[3]
+			}
+		};
+	</script>
+</head>
+
+<body class="in_body" onload="init_server_setting_form(3)">
+	<div class="div_c" style="margin-left:40px;margin-right:30px" id="main_div">
+		<div style="height:400px;">
+			<font class="blue s16 b" id="tit1"></font>
+			<div class="sp_10"></div>
+			<div style="overflow:auto">
+				<form name="form_server_setting" method="get" action="do_cmd.html">
+					<input type="hidden" name="server_b" />
+					<input type="hidden" name="server_c" />
+					<div class="tab_1 w_58" id="tx1"></div>
+					<div class="tab_1 w_103" id="tx2"></div>
+					<div class="tab_1 w_153" id="tx3"></div>
+					<div class="tab_1 w_45" id="tx4"></div>
+					<div class="tab_1 w_70" id="tx5"></div>
+					<div class="cl"></div>
+					<div class="sp_5"></div>
+					<div class="tab_2 w_58" id="tx8"></div>
+					<div class="tab_2"><input type="text" class="w_103 bor_0" readonly="readonly" style="background-color:#E1E1E1"
+							id="ip_d" /></div>
+					<div class="tab_2"><input type="text" class="w_153 bor_0" readonly="readonly" style="background-color:#E1E1E1"
+							id="ds_d" /></div>
+					<div class="tab_2"><input type="text" class="w_45 bor_0" readonly="readonly" style="background-color:#E1E1E1"
+							id="pt_d" /></div>
+					<div class="tab_2"><input type="text" class="w_70 bor_0" readonly="readonly" style="background-color:#E1E1E1"
+							id="cn_d" /></div>
+					<div class="tab_2" style="display:none"><input type="text" class="w_103 bor_0" name="cnmo_ip_a" id="ip_1" />
+					</div>
+					<div class="tab_2" style="display:none"><input type="text" class="w_153 bor_0" name="cnmo_ds_a" id="ds_1" />
+					</div>
+					<div class="tab_2" style="display:none"><input type="text" class="w_45 bor_0" name="cnmo_pt_a" id="pt_1" />
+					</div>
+					<div class="tab_2" style="display:none"><select name="cnmo_tp_a" class="w_70 bor_0" id="tp_1">
+							<option value="TCP">TCP</option>
+							<option value="UDP">UDP</option>
+						</select></div>
+					<div class="cl"></div>
+					<div class="line3"></div>
+					<div class="tab_2 w_58" id="tx9"></div>
+					<div class="tab_2"><input type="text" class="w_103 bor_0" name="cnmo_ip_b" id="ip_2"
+							onfocus="txtOnfocus(this)" onblur="txtOnblur(this)" /></div>
+					<div class="tab_2"><input type="text" class="w_153 bor_0" name="cnmo_ds_b" id="ds_2"
+							onfocus="txtOnfocus(this)" onblur="txtOnblur(this)" /></div>
+					<div class="tab_2"><input type="text" class="w_45 bor_0" name="cnmo_pt_b" id="pt_2" onfocus="txtOnfocus(this)"
+							onblur="txtOnblur(this)" /></div>
+					<div class="tab_2"><select name="cnmo_tp_b" class="w_70 bor_0" id="tp_2">
+							<option value="TCP">TCP</option>
+							<option value="UDP">UDP</option>
+						</select></div>
+					<div class="cl"></div>
+					<div class="line3"></div>
+					<div style="width:520px;margin-top:15px;margin-left:4px" class="tr"><input type="button" class="btn" id="btn4"
+							onclick="server_setting_apply(2)" /></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		initPageText();
+		ready();
+	</script>
+</body>
+
+</html>

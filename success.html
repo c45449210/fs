@@ -1,0 +1,108 @@
+<HTML>
+
+<HEAD>
+  <title></title>
+  <META http-equiv=Content-Type content="text/html" charset="gb2312">
+  <style type="text/css">
+    .in_body {
+      margin-top: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      background-color: transparent;
+    }
+
+    .div_c {
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+    .s16 {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 44%;
+    }
+
+    .white {
+      color: #666666;
+    }
+
+    .lab_4 {
+      margin-left: 70px;
+      margin-right: 50px;
+      color: #666666;
+      font-size: 14px;
+    }
+
+    .sp_120 {
+      width: 10px;
+      height: 120px;
+    }
+  </style>
+  <script type="text/javascript">
+    
+    function fileText(id, value) {
+      if (document.getElementById(id)) {
+        document.getElementById(id).innerHTML = value;
+      }
+    }
+
+    function changeFont() {
+      reCon("main_div").style.fontFamily = window.parent.reFont();
+    }
+
+    function reCon(id) {
+      return document.getElementById(id);
+    }
+    var height = 0;
+
+    function child_getH() {
+      var nh = document.body.offsetHeight + 100;
+      if (nh < 500 || nh == null) {
+        nh = 500;
+      }
+      if (height != nh) {
+        height = nh;
+        window.parent.child_height(height);
+      }
+    }
+
+    function ready() {
+      try {
+        window.parent.show_ifr();
+      } catch (e) {
+
+      }
+      child_getH();
+    }
+  </script>
+  <script type="text/javascript">
+    function initPageText() {
+      if(window.parent.result){
+        console.log(window.parent.result)
+        console.log("成功")
+      }else{
+        console.log(window.parent.result)
+        console.log('失败')
+      }
+      var list = window.parent.reList("commit");
+        fileText("tit2",list["t2"]);
+
+      changeFont();
+      child_getH();
+    }
+  </script>
+</HEAD>
+
+<body class="in_body" id="main_div">
+  <div class="s16" id="tit2"></div>
+  <script type="text/javascript">
+    initPageText();
+    ready();
+    window.parent.child_height(500);
+  </script>
+</body>
+
+</html>
